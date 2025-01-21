@@ -1,0 +1,144 @@
+@use './../setting' as *;
+
+%button-reset {
+    background-color: transparent;
+    border: none;
+}
+
+%center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.2);;
+
+    @include laptop {
+        background-color: transparent;
+    }
+
+    .header__inner {
+        padding: rem(20px) rem(16px);
+        align-items: center;
+        justify-content: center;
+
+        @include laptop {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: rem(12px) rem(18px);
+        }
+
+        .header__logo {
+            font-size: rem(18px);
+            font-weight: 800;
+            @include flex-between;
+
+            em {
+                color: #df2929;
+                font-weight: 400;
+                font-size: rem(12px);
+                padding: rem(4px) rem(6px);
+                border-radius: rem(4px);
+                background-color: rgba(0, 0, 0, 0.2);;
+                margin-left: rem(8px);
+                margin-bottom: rem(4px);
+            }
+        }
+
+        .header__nav {
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            column-gap: rem(40px);
+            row-gap: rem(40px);
+            margin-top: rem(20px);
+            padding: 20px;
+            background-color: transparent;
+
+            // active style
+            transition: transform 0.3s ease-in-out;
+            transform: translateY(-100%);
+            position: absolute;
+            bottom: rem(1px);
+            left: 0;
+            right: 0;
+
+            // nav js
+            &.active {
+                transform: translateY(100%);
+                background-color: rgba(0, 0, 0, 0.2);;
+            }
+
+            @include laptop {
+                position: unset;
+                height: auto;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                margin-top: 0;
+                transform: translateY(0%) !important;
+                padding: 0;
+            }
+    
+            .menu {
+                width: 100%;
+                max-width: rem(732px);
+                word-break: keep-all;
+                display: grid;
+                row-gap: rem(12px);
+                @include laptop {
+                    display: flex;
+                }
+    
+                &__list {
+                    cursor: pointer;
+                    @include laptop {
+                        margin: 0px;
+                    }
+
+                    &__link {
+                        display: block;
+                        padding: rem(12px);
+                        border-radius: rem(6px);
+                        font-size: rem(16px);
+                        font-weight: 600;
+                        &:hover {
+                            background-color: rgba(0, 0, 0, 0.2);;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    .btn-box {
+        cursor: pointer;
+        position: absolute;
+        top: rem(14px);
+        right: rem(16px);
+        font-size: rem(14px);
+        width: rem(40px);
+        height: rem(40px);
+        border-radius: 100%;
+        font-weight: 600;
+        @extend %button-reset, %center;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.2);;
+        }
+        @include laptop {
+            display: none;
+        }
+    }
+        
+}
