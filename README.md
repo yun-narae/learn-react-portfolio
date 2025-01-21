@@ -1,7 +1,7 @@
 # 리액트로 포트폴리오 사이트 만들기
 
 ## 완성작 보기 
-미리보기 : 
+미리보기 : https://learn-react-portfolio.netlify.app/ 
 
 ## 사용 스택
 - react(https://ko.legacy.reactjs.org/) 를 사용하여 사이트를 번들링하고 관리합니다.
