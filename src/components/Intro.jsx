@@ -10,6 +10,7 @@ const Intro = () => {
                 <h1 className="sr-only">
                     윤나래 프론트엔드 포트폴리오
                 </h1>
+
                 <div className="intro__text">
                     <h2 className="intro__text-title">
                         {introText.title}
@@ -27,11 +28,29 @@ const Intro = () => {
                     </div>
                 </div>
                 <span className="update">update.2025.10</span>
-                <span className="scroll-down">
-                    <SvgIcon 
-                        name="arrow-down"
-                        className="arrow-down"
-                    />
+                <span
+                    role="button"
+                    tabIndex={0}
+                    className="scroll-down animate-bounce"
+                    aria-label="스킬 섹션으로 이동"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        const target = '#skill';
+                        if (window.lenis?.scrollTo) {
+                        window.lenis.scrollTo(target);
+                        } else {
+                        document.querySelector(target)?.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start',
+                        });
+                        }
+                    }}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') e.currentTarget.click();
+                    }}
+                    >
+                        <SvgIcon name="arrow-down" className="arrow-down" />
+                        <SvgIcon name="arrow-down" className="arrow-down" />
                 </span>
             </div>
         </section>
