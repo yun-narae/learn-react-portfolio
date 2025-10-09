@@ -1,65 +1,68 @@
 @use './../setting' as *;
 
-#intro {
-    height: 100vh;
-
+.sr-only {
+    @include a11yHidden;
 }
 
-.intro__inner {
-    width: 100%;
+#intro{
     height: 100vh;
-    overflow: hidden;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    padding: 16px;
 
-    .intro__title {
-        // width: 100%;
-        font-size: 10vw;
-        text-transform: uppercase;
-        line-height: 1;
-        font-weight: 800;
-        white-space: nowrap;
-        text-indent: -0.5vw;
-        letter-spacing: -0.3vw;
-        position: absolute;
-        bottom: rem(30px);
+    .intro__inner {
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        padding: 16px;
         
-        span {
-            font-size: rem(14px);
-            letter-spacing: 0;
-            margin-top: rem(12px);
+        .intro__text {
             color: var(--white);
-            position: absolute;
-            left: 60%;
-            bottom: rem(-24px);
-            width:auto;
-            transform:translate(-50%,-50%);
-        }
-    }
-    .intro__text {
-        display: flex;
-        align-items: center;
-        justify-content: left;
-        
-        .text {
-            font-size: 3vw;
-            line-height: 1;
-            font-weight: 900;
-            text-transform: uppercase;
-            position: relative;
-            transition: all 0.3s;
-            cursor: all-scroll;
-            margin-bottom: rem(140px);
 
-            >:nth-child(1) {
+            &-title {
+                color: var(--red);
+                position: absolute;
+                bottom: 2rem;
+                font-size: 10vw;
+                text-transform: uppercase;
+                line-height: 1;
+                font-weight: 800;
+                white-space: nowrap;
                 text-indent: -0.5vw;
+                letter-spacing: -0.3vw;
+                @include laptop {
+                    top: 4rem;
+                    max-width: 5ch;            // FRONT (5ch)까지만 1줄에
+                    overflow-wrap: anywhere;   // 어디서든 줄바꿈 허용 (표준)
+                    word-break: break-word;    // 사파리 등 보완
+                    text-wrap: balance;        // 지원 브라우저에서 두 줄 균형(옵션)
+                }
             }
 
-            @media (max-width: 800px){ 
-                font-size: 24px;
+            &-frame {
+                position: absolute;
+                bottom: 7rem;
+                display: flex;
+                flex-flow: column;
+                @include tablet {
+                    bottom: 8rem;
+                }
+                @include laptop {
+                    bottom: 4rem;
+                }
+            }
+            
+            &-desc {
+                font-size: 4vw;
+                @include laptop {
+                    font-size: 3vw;
+                    color: var(--black200);
+                }
+            }
+
+            &-text {
+                font-size: 3vw;
+                @include laptop {
+                    font-size: 2vw;
+                    color: var(--black200);
+                }
             }
         }
 
@@ -77,27 +80,33 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            
             @include laptop {
-                // height: 160%;
+                transform: translate(0%, -50%);
+                width: fit-content;
+                padding: 80px;
+                filter: grayscale(0);
             }
 
             img {
                 width: 100%;
-                height: 120%;
-                object-fit: cover; /* 이미지를 잘라내면서 화면을 꽉 채움 */
-                object-position: bottom; /* 이미지를 정가운데에 위치시킴 */
-                @include laptop {
-                    height: 160%;
-                    object-position: center -100px;
-                }
+                height: 100%;
+                object-fit: cover;
+                object-position: bottom;
             }
         }
-
-        &:hover .text {
-            opacity: 0;
+        
+        .update {
+            position: absolute;
+            right: 2rem;
+            bottom: 2rem;
+            color: var(--black300);
         }
-        &:hover .img {
-            filter: grayscale(0);
+
+        .scroll-down {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
         }
     }
 }
