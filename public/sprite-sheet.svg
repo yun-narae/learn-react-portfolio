@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <symbol id="arrow-down" viewBox="0 0 24 24">
+        <g clip-path="url(#clip-arrow-down)">
+            <path stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M5.25 10L12 16.75 18.75 10" />
+        </g>
+        <defs>
+            <clipPath id="clip-arrow-down">
+                <rect width="24" height="24" fill="currentColor" rx="12" />
+            </clipPath>
+        </defs>
+    </symbol>
+
+    <symbol id="arrow-left" viewBox="0 0 24 24">
+        <path stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M14.75 5.25L8 12l6.75 6.75" />
+    </symbol>
+
+    <symbol id="arrow-right" viewBox="0 0 24 24">
+        <g clip-path="url(#clip-arrow-right)">
+            <path stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M9 5.25L15.75 12 9 18.75" />
+        </g>
+        <defs>
+            <clipPath id="clip-arrow-right">
+                <rect width="24" height="24" rx="12" />
+            </clipPath>
+        </defs>
+    </symbol>
+
+    <symbol id="arrow-up" viewBox="0 0 24 24">
+        <g clip-path="url(#clip-arrow-up)">
+            <path stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M5.25 14.75L12 8l6.75 6.75" />
+        </g>
+        <defs>
+            <clipPath id="clip-arrow-up">
+                <path fill="currentColor" d="M0 12C0 5.373 5.373 0 12 0s12 5.373 12 12-5.373 12-12 12S0 18.627 0 12z" />
+            </clipPath>
+        </defs>
+    </symbol>
+    
+    <symbol id="menu" viewBox="0 0 24 24">
+        <path stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M3.75 12h16.5M3.75 6h16.5M3.75 18h16.5" />
+    </symbol>
+    
+    <symbol id="delete" viewBox="0 0 24 24">
+        <path stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M18.75 5.25l-13.5 13.5m13.5 0L5.25 5.25" />
+    </symbol>
+</svg>
