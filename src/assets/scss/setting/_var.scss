@@ -15,6 +15,7 @@
     --black200: #434343;
     --black300: #686868;
     --black400: #e0e0e0;
+    --red: #b62c33;
   
     font-family: var(--mainEng-font), var(--mainKor-font);
     font-size: 16px;
@@ -35,4 +36,5 @@
   
 body {
     background-color: var(--mainBg-color);
+    overflow: hidden;
 }

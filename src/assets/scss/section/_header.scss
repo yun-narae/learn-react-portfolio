@@ -41,7 +41,7 @@
             @include flex-between;
 
             em {
-                color: #df2929;
+                color: var(--red);
                 font-weight: 400;
                 font-size: rem(12px);
                 padding: rem(4px) rem(6px);
