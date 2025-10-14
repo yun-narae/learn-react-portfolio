@@ -1,10 +1,24 @@
-// src/utils/smooth.js
 import Lenis from "@studio-freight/lenis";
 
-let lenis; // 싱글톤
+let lenis;           // 싱글톤 인스턴스
+let rafId = null;    // RAF 루프 아이디
+
+function startRAF() {
+    if (rafId) return;
+    const loop = (time) => {
+        if (lenis) lenis.raf(time);
+        rafId = requestAnimationFrame(loop);
+    };
+    rafId = requestAnimationFrame(loop);
+}
+
+function stopRAF() {
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = null;
+}
 
 export default function smooth(options = {}) {
-    if (lenis) return lenis; // 중복 초기화 방지
+    if (lenis) return lenis;
     lenis = new Lenis({
         duration: 1.5,
         easing: (t) => Math.min(1, 1.8 - Math.pow(2, -10 * t)),
@@ -12,40 +26,40 @@ export default function smooth(options = {}) {
         smoothTouch: true,
         ...options,
     });
-
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
+    startRAF();
     if (typeof window !== "undefined") window.__lenis = lenis; // 디버깅용
     return lenis;
 }
 
-// ⬇️ named exports 추가
 export const getLenis = () => lenis || (typeof window !== "undefined" ? window.__lenis : null);
 
+/** Lenis가 멈춰있거나( stop() ) RAF가 죽었으면 자동 복구 */
+export function ensureLenisRunning() {
+    if (!lenis) smooth();
+    // 일부 버전은 내부 플래그가 __isStopped 로 들어있음
+    const stopped = lenis?.isStopped || lenis?.__isStopped;
+    if (stopped && lenis?.start) lenis.start();
+    startRAF();
+    return lenis;
+}
+
 export function scrollTo(target, opts = {}) {
-    const l = getLenis() || smooth();
+    const l = ensureLenisRunning();
     try {
-        l.scrollTo(target, opts); // target: number | selector | element
+        l.scrollTo(target, opts); // target: number | element | selector
     } catch {
-        // 폴백 (숫자/엘리먼트 둘 다 지원)
+        // 폴백
         if (typeof target === "number") {
             window.scrollTo({ top: target, behavior: "smooth" });
         } else if (target instanceof Element) {
             const top = target.getBoundingClientRect().top + window.pageYOffset + (opts.offset || 0);
             window.scrollTo({ top, behavior: "smooth" });
+        } else if (typeof target === "string") {
+            const el = document.querySelector(target);
+            if (el) {
+                const top = el.getBoundingClientRect().top + window.pageYOffset + (opts.offset || 0);
+                window.scrollTo({ top, behavior: "smooth" });
+            }
         }
-    }
-}
-
-export function scrollToY(y, opts = {}) {
-    const l = getLenis() || smooth();
-    try {
-        l.scrollTo(y, opts);
-    } catch {
-        window.scrollTo({ top: y, behavior: "smooth" });
     }
 }
