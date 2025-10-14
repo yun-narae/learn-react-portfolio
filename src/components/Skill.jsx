@@ -31,7 +31,7 @@ const Skill = () => {
                             <ul className="skill__icons">
                                 {["html", "css", "javascript", "react", "tailwind", "sass"].map((n) => (
                                     <li key={n} className="icon__cover">
-                                    <SvgIcon name={n} className="icon__svg" />
+                                    <SvgIcon name={n} className={`icon__svg ${n}`} />
                                     </li>
                                 ))}
                             </ul>
@@ -42,7 +42,7 @@ const Skill = () => {
                             <ul className="skill__icons">
                                 {["github", "figma", "xd", "illustrator", "photoshop", "slack", "notion", "discord"].map((n) => (
                                 <li key={n} className="icon__cover">
-                                    <SvgIcon name={n} className="icon__svg" />
+                                    <SvgIcon name={n} className={`icon__svg ${n}`} />
                                 </li>
                                 ))}
                             </ul>
