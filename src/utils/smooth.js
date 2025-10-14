@@ -1,4 +1,4 @@
-import Lenis from "@studio-freight/lenis";
+import Lenis from "lenis";
 
 let lenis;           // 싱글톤 인스턴스
 let rafId = null;    // RAF 루프 아이디
