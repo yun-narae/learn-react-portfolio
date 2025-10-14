@@ -1,0 +1,51 @@
+@use "./../setting" as *;
+
+.backtotop {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    z-index: 1000;
+
+    cursor: pointer;
+
+    width: 48px;
+    height: 48px;
+    border: 0;
+    border-radius: 9999px;
+
+    display: grid;
+    place-items: center;
+
+    background: var(--subBg300);
+    color: var(--red100);
+    box-shadow: 0 10px 25px rgba(0,0,0,.2);
+
+    opacity: 0;
+    transform: translateY(12px) scale(.9);
+
+    transition: opacity .2s ease, transform .2s ease, box-shadow .2s ease, background .2s ease;
+
+    svg {
+        width: 20px;
+        height: 20px;
+        display: block;
+    }
+
+    &.is-visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+    }
+
+    &:hover { box-shadow: 0 14px 30px rgba(0,0,0,.28); }
+    &:focus-visible { outline: 2px solid var(--red100); outline-offset: 3px; }
+
+    @media (max-width: 480px) {
+        right: 16px;
+        bottom: 16px;
+        width: 44px;
+        height: 44px;
+
+        svg { width: 18px; height: 18px; }
+    }
+}
