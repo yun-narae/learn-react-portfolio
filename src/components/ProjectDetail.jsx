@@ -6,6 +6,7 @@ import useImagePreview from "../hooks/useImagePreview";
 import ImagePreviewModal from "./ImagePreviewModal/ImagePreviewModal";
 import { scrollTo } from "../utils/smooth";
 import useScrollToTop from "../hooks/useScrollToTop";
+import SvgIcon from './SvgIcon/SvgIcon';
 
 const ProjectDetail = () => {
     useScrollToTop(); // 라우팅/새로고침마다 맨 위로
@@ -114,8 +115,11 @@ const ProjectDetail = () => {
 
     return (
         <>
-            <article id="projectDetail" className="project__wapper project__wapper-yorizori">
+            <article id="projectDetail" className="project__wapper">
                 <div className="project__inner">
+                <Link to="/" className="project__inner-back" aria-label="목록으로">
+                    <SvgIcon name="arrow-left"/>
+                </Link>
                     <div className="project__header">
                         <div className="project__header-inner">
                             <h2 className="project__title">{title}</h2>
