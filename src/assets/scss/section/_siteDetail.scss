@@ -1,13 +1,28 @@
+@use "../setting/mixin";
+
 @use "./../setting" as *;
 
 /* 디테일 페이지 */
 .project__wapper {
     background: var(--mainBg-color);
-    padding: 6rem 1rem;        
+    padding: 1rem 1rem 4rem 1rem;
 
     .project__inner {
         max-width: 1200px;
         margin: 0 auto;
+        
+        // 뒤로가기 버튼
+        &-back {
+            display: block;
+            padding: 2rem 0;
+            width: fit-content;
+            transition: 0.3s;
+            color: var(--black300);
+            
+            &:hover {
+                color: var(--red100);
+            }
+        }
     }
 
     .project__header {
@@ -16,7 +31,7 @@
         gap: 2rem;
         margin-bottom: 5rem;
         
-        @include laptop {
+        @include mixin.laptop {
             display: grid;
             grid-template-columns: 0.7fr 1fr;
         }
@@ -97,7 +112,7 @@
     }
 
     .project__contents {
-        @include laptop {
+        @include mixin.laptop {
             display: grid;
             grid-template-columns: 0.2fr 1fr;
         }
@@ -106,7 +121,7 @@
     .project__aside {
         display: none;
 
-        @include laptop {
+        @include mixin.laptop {
             scroll-margin-top: 80px;
             display: flex;
             flex-direction: column;
@@ -176,7 +191,7 @@
             grid-template-columns: repeat(1, 1fr);
             gap: 1.5rem;
 
-            @include tablet {
+            @include mixin.tablet {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
@@ -278,7 +293,7 @@
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
         gap: 1rem;
 
-        @include laptop {
+        @include mixin.laptop {
             grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
         }
     }

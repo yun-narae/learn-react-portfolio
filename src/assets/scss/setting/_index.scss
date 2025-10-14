@@ -1,5 +1,5 @@
-@import "fonts";
-@import "mixin";
-@import "reset";
-@import "var";
-@import "functions";
+@forward "fonts";
+@forward "mixin";
+@forward "reset";
+@forward "var";
+@forward "functions";

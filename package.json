@@ -10,7 +10,6 @@
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.1",
     "react-scripts": "5.0.1",
-    "sass": "^1.83.0",
     "swiper": "^11.2.10",
     "web-vitals": "^4.2.4"
   },
@@ -39,6 +38,8 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "sass": "^1.93.2",
+    "sass-embedded": "^1.93.2"
   }
 }

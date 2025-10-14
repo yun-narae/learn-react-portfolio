@@ -1,7 +1,9 @@
+@use "../setting/mixin";
+
 @use './../setting' as *;
 
 .sr-only {
-    @include a11yHidden;
+    @include mixin.a11yHidden;
 }
 
 #intro{
@@ -27,7 +29,7 @@
                 white-space: nowrap;
                 text-indent: -0.5vw;
                 letter-spacing: -0.3vw;
-                @include laptop {
+                @include mixin.laptop {
                     top: 4rem;
                     max-width: 5ch;            // FRONT (5ch)까지만 1줄에
                     overflow-wrap: anywhere;   // 어디서든 줄바꿈 허용 (표준)
@@ -41,17 +43,17 @@
                 bottom: 7rem;
                 display: flex;
                 flex-flow: column;
-                @include tablet {
+                @include mixin.tablet {
                     bottom: 8rem;
                 }
-                @include laptop {
+                @include mixin.laptop {
                     bottom: 4rem;
                 }
             }
             
             &-desc {
                 font-size: 4vw;
-                @include laptop {
+                @include mixin.laptop {
                     font-size: 3vw;
                     color: var(--black200);
                 }
@@ -59,7 +61,7 @@
 
             &-text {
                 font-size: 3vw;
-                @include laptop {
+                @include mixin.laptop {
                     font-size: 2vw;
                     color: var(--black200);
                 }
@@ -81,7 +83,7 @@
             justify-content: center;
             align-items: center;
             
-            @include laptop {
+            @include mixin.laptop {
                 transform: translate(0%, -50%);
                 width: fit-content;
                 padding: 80px;
@@ -101,7 +103,7 @@
             right: 2rem;
             bottom: 2rem;
             color: var(--black);
-            @include laptop {
+            @include mixin.laptop {
                 color: var(--black300);
             }
         }
@@ -122,7 +124,7 @@
             justify-content: center;
             color: var(--white);
             
-            @include laptop {
+            @include mixin.laptop {
                 color: var(--black200);
             }
         }

@@ -1,3 +1,5 @@
+@use "../setting/mixin";
+
 // Skill.scss
 @use "./../setting" as *;
 
@@ -12,11 +14,11 @@
         gap: 4rem;
         max-width: 1200px;
         margin: 0 auto;
-        @include tablet {
+        @include mixin.tablet {
             display: grid;
             grid-template-columns: 0.6fr 1fr;
         }
-        @include laptop {
+        @include mixin.laptop {
 
         }
     }
@@ -29,7 +31,7 @@
         color: var(--mainBg-color);
         
         white-space: nowrap;
-        @include tablet {
+        @include mixin.tablet {
             white-space: normal;
             position: sticky;
             top: 70px;
