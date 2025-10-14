@@ -72,11 +72,6 @@
                     background: var(--red100);
                 }
             }
-            &:focus-visible {
-                outline: 2px solid color-mix(in srgb, var(--point-color), white 15%);
-                outline-offset: 2px;
-            }
-
         }
     }
 
@@ -93,9 +88,10 @@
 
     /* ── Card ───────────────────────────────────────────── */
     .site__item {
+        position: relative;
         width: 100%;
         background: var(--subBg100);
-        border-radius: 16px;
+        border-radius: 1rem;
         padding: 2rem;
         backdrop-filter: blur(6px);
         transition: transform .3s ease, background .3s ease;
@@ -104,11 +100,18 @@
             transform: translateY(-6px);
         }
 
-        .info-inner {
+        &-head {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-link {
+            position: absolute;
+            inset: 0;
+            /* 접근성: 포커스링 표시 */
+            outline: none;
         }
 
         .num {
@@ -122,13 +125,19 @@
             font-size: .95rem;
             line-height: 1.55;
             background: var(--subBg200);
-            color: var(--white);
+            color: var(--red100);
             padding: 0.4rem;
             font-size: 0.8rem;
             border-radius: 6px;
         }
 
-        .text {
+        .title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: .6rem;
+        }
+
+        .keyword {
             display: flex;
             align-items: center;
             gap: 0.8rem;
@@ -139,18 +148,23 @@
             color: var(--black300);
         }
 
-        .title {
-            font-size: 1.4rem;
-            font-weight: 700;
+        .img {
             margin-bottom: .8rem;
+
+            img {
+                border-radius: 1rem;
+            }
         }
 
         .btn {
             display: flex;
+            align-items: center;
+            justify-content: start;
             gap: .75rem;
-            margin-top: .5rem;
 
             a {
+                position: relative; /* 오버레이 위에서도 클릭 가능 */
+                z-index: 1;
                 display: inline-block;
                 padding: .6rem 1.2rem;
                 border-radius: 8px;
