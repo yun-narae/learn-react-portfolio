@@ -1,17 +1,11 @@
 // src/components/ProjectDetail.jsx
-import React from "react";
-import { useParams, Link } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { useParams, Link, useLocation } from "react-router-dom";
 import { siteText } from "../constants";
 import useImagePreview from "../hooks/useImagePreview";
 import ImagePreviewModal from './ImagePreviewModal/ImagePreviewModal';
+import { scrollTo } from "../utils/smooth";
 
-/**
- * ProjectDetail
- * - /projects/:id 파라미터로 해당 아이템을 찾아 상세 표시
- * - 가독성 정리(불필요한 상태/함수 제거)
- * - 스크롤 애니메이션/트리거 없음
- * - 클래스명은 기존 SCSS 구조와 매칭
- */
 const ProjectDetail = () => {
     const { id } = useParams();
     const { previewUrl, openPreview, closePreview } = useImagePreview();
@@ -22,6 +16,43 @@ const ProjectDetail = () => {
     if (!item && idx !== null && idx >= 0 && idx < siteText.length) {
         item = siteText[idx];
     }
+
+    const NAVS = [
+        { id: "introduction", label: "프로젝트 소개" },
+        { id: "features", label: "핵심 기능" },
+        { id: "ts", label: "트러블 슈팅" },
+        { id: "retrospect", label: "회고록" },
+        { id: "screens", label: "작업 화면" },
+    ];
+    const HEADER_OFFSET = 80;
+    const sectionRefs = useRef(NAVS.map(() => React.createRef()));
+    const [active, setActive] = useState(0);
+    const { hash } = useLocation();
+    
+    useEffect(() => {
+        if (!hash) return;
+        const el = document.querySelector(hash);
+        if (!el) return;
+        scrollTo(el, { offset: -HEADER_OFFSET, duration: 1.2 });
+    }, [hash]);
+
+    useEffect(() => {
+        const targets = sectionRefs.current.map(r => r.current).filter(Boolean);
+        if (!targets.length) return;
+        const io = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const idx = targets.indexOf(entry.target);
+                        if (idx > -1) setActive(idx);
+                    }
+                });
+            },
+            { threshold: 0.1, rootMargin: "-40% 0px -55% 0px" }
+        );
+        targets.forEach(t => io.observe(t));
+        return () => io.disconnect();
+    }, []);
 
     if (!item) {
         return (
@@ -100,14 +131,30 @@ const ProjectDetail = () => {
                     </div>
                     <div className="project__item">
                         <div className="project__contents">
-                            <ul className="project__aside">
-                                <li className="project__aside-title active">프로젝트 소개</li>
-                                <li className="project__aside-title">핵심 기능</li>
-                                <li className="project__aside-title">트러블 슈팅</li>
-                                <li className="project__aside-title">회고록</li>
-                            </ul>
+                            
+                        <ul className="project__aside" role="tablist" aria-label="프로젝트 섹션 이동">
+                            {NAVS.map((nav, i) => (
+                                <li
+                                    key={nav.id}
+                                    className={`project__aside-title ${active === i ? "active" : ""}`}
+                                    role="tab"
+                                    aria-selected={active === i}
+                                    aria-current={active === i ? "true" : undefined}
+                                >
+                                    <a
+                                        href={`#${nav.id}`}
+                                        className="project__aside-link"
+                                        onClick={() => setActive(i)}                       // ← 클릭 즉시 active
+                                        onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setActive(i)}
+                                    >
+                                        {nav.label}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+
                             <div className="project__article">
-                                <section className="project__article-section">
+                                <section id="introduction" className="project__article-section">
                                     <h3 className="project__article-section-title">
                                         프로젝트 소개
                                     </h3>
@@ -118,7 +165,7 @@ const ProjectDetail = () => {
                                         </li>
                                     </ul>
                                 </section>
-                                <section className="project__article-section">
+                                <section id="features" className="project__article-section">
                                     <h3 className="project__article-section-title">핵심 기능</h3>
                                     <ul className="project__article-section-inner" aria-label="핵심 기능">
                                         <li className="section__card">
@@ -161,7 +208,7 @@ const ProjectDetail = () => {
                                         </li>
                                     </ul>
                                 </section>
-                                <section className="project__article-section">
+                                <section id="ts" className="project__article-section">
                                     <h3 className="project__article-section-title">트러블 슈팅</h3>
                                     <ul className="project__article-section-inner" aria-label="트러블 슈팅">
                                         <li className="section__card">
@@ -210,7 +257,7 @@ const ProjectDetail = () => {
                                         </li>
                                     </ul>
                                 </section>
-                                <section className="project__article-section">
+                                <section id="retrospect" className="project__article-section">
                                     <h3 className="project__article-section-title">회고록</h3>
                                     <ul className="project__article-section-inner" aria-label="회고록">
                                         <li className="section__card">
@@ -222,7 +269,7 @@ const ProjectDetail = () => {
                                         </li>
                                     </ul>
                                 </section>
-                                <section className="project__article-section project__view">
+                                <section id="screens" className="project__article-section project__view">
                                     <h3 className="project__article-section-title">작업 화면</h3>
                                     <ul className="project__article-section-inner" aria-label="회고록">
                                         {detailImg.map((src, idx) => (
