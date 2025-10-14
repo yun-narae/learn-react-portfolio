@@ -3,3 +3,14 @@
 @import "./section";
 @import "./setting";
 @import "./components";
+
+/* ---- Lenis base styles ---- */
+html.lenis,
+.lenis body { height: auto; }
+
+.lenis.lenis-smooth { scroll-behavior: auto !important; } /* 네이티브 smooth OFF */
+
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* 혹시 다른 곳에서 smooth를 켰다면 끄기 */
+html, body { scroll-behavior: auto !important; }

@@ -12,11 +12,6 @@ function startRAF() {
     rafId = requestAnimationFrame(loop);
 }
 
-function stopRAF() {
-    if (rafId) cancelAnimationFrame(rafId);
-    rafId = null;
-}
-
 export default function smooth(options = {}) {
     if (lenis) return lenis;
     lenis = new Lenis({
