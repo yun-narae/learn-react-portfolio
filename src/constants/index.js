@@ -72,27 +72,3 @@ export const siteText = [
         view: "https://trinitytaing.netlify.app/",
     },
 ];
-
-export const contactText = [
-    {
-        link: "https://open.kakao.com/o/gM7YLzwf",
-        title: "KAKAO : webstupids",
-    },
-    {
-        link: "mailto:webstoryboy@naver.com",
-        title: "mail : webstoryboy@naver.com",
-    },
-];
-
-export const footerText = [
-    {
-        title: "youtube",
-        desc: "유튜브에 오시면 더 많은 강의를 볼 수 있습니다.",
-        link: "https://www.youtube.com/@Webstoryboy",
-    },
-    {
-        title: "github",
-        desc: "깃헙에 오시면 더 많은 소스를 볼 수 있습니다.",
-        link: "https://github.com/webstoryboy",
-    }
-];
