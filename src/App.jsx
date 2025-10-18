@@ -15,8 +15,15 @@ function ScrollToTop() {
 
 const App = () => {
     useEffect(() => {
-        smooth();
-        link();
+        // Lenis 초기화를 약간 지연시켜 DOM이 완전히 로드된 후 실행
+        const timer = setTimeout(() => {
+            smooth();
+            link();
+        }, 50);
+
+        return () => {
+            clearTimeout(timer);
+        };
     }, []);
 
     return (

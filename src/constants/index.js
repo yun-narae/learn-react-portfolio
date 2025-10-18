@@ -1,6 +1,6 @@
-import ounwanthumbnail from "../assets/img/ounwan/thumbnail.png";
-import youtubethumbnail from "../assets/img/youtube/thumbnail.png";
-import taingthumbnail from "../assets/img/taing/thumbnail.png";
+import ounwanthumbnail from "../assets/img/ounwan/ounwanthumbnail.png";
+import youtubethumbnail from "../assets/img/youtube/youtubethumbnail.png";
+import taingthumbnail from "../assets/img/taing/taingthumbnail.png";
 
 export const headerNav = [
     { title: "intro", url: "#intro" },

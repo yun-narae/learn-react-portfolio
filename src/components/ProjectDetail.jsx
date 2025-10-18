@@ -8,6 +8,7 @@ import ImagePreviewModal from "./ImagePreviewModal/ImagePreviewModal";
 import { scrollTo } from "../utils/smooth";
 import useScrollToTop from "../hooks/useScrollToTop";
 import SvgIcon from "./SvgIcon/SvgIcon";
+import { preloadImages } from "../utils/imageOptimizer";
 
 const ProjectDetail = () => {
     useScrollToTop(); // 라우팅/새로고침마다 맨 위로
@@ -98,6 +99,29 @@ const ProjectDetail = () => {
         setActive(0);
         clearHash();
     }, []);
+
+    // 이미지 preload
+    useEffect(() => {
+        const imageSrcs = [];
+        
+        // 메인 썸네일 이미지
+        if (imageSrc) {
+            imageSrcs.push(imageSrc);
+        }
+        
+        // 작업 화면 이미지들
+        if (workScreens.length > 0) {
+            workScreens.forEach(screen => {
+                if (screen.src) {
+                    imageSrcs.push(screen.src);
+                }
+            });
+        }
+        
+        if (imageSrcs.length > 0) {
+            preloadImages(imageSrcs);
+        }
+    }, [imageSrc, workScreens]);
 
     useEffect(() => {
         const targets = sectionRefs.current.map((r) => r.current).filter(Boolean);
@@ -206,7 +230,17 @@ const ProjectDetail = () => {
                         </div>
 
                         <div className="project__thumbnail">
-                            <img src={imageSrc} alt={imageAlt} loading="eager" />
+                            <img 
+                                src={imageSrc} 
+                                alt={imageAlt} 
+                                loading="eager"
+                                decoding="async"
+                                style={{
+                                    width: '100%',
+                                    height: 'auto',
+                                    objectFit: 'cover'
+                                }}
+                            />
                         </div>
                     </div>
 
@@ -342,15 +376,20 @@ const ProjectDetail = () => {
                                                     <img
                                                         src={img.src}
                                                         alt={img.alt + "-작업화면"}
-                                                        loading="eager"
-                                                        
+                                                        loading="lazy"
+                                                        decoding="async"
                                                         role="button"
                                                         tabIndex={0}
                                                         aria-haspopup="dialog"
                                                         onKeyDown={(e) => {
                                                             if (e.key === "Enter" || e.key === " ") openPreview(img.src);
                                                         }}
-                                                        style={{ cursor: "zoom-in" }}
+                                                        style={{ 
+                                                            cursor: "zoom-in",
+                                                            width: '100%',
+                                                            height: 'auto',
+                                                            objectFit: 'cover'
+                                                        }}
                                                     />
                                                 </li>
                                             ))}
