@@ -34,9 +34,11 @@
         line-height: 1.4;
     }
 }
-  
+
+html, body { overflow: auto !important; touch-action: auto !important; }
+
+
 body {
     background-color: var(--mainBg-color);
     margin: 0;
-    overflow-x: hidden;
 }
