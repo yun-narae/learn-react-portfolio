@@ -1,12 +1,5 @@
 // 이미지 최적화 유틸리티
-export const optimizeImage = (src, options = {}) => {
-    const {
-        width = 400,
-        height = 'auto',
-        quality = 80,
-        format = 'webp'
-    } = options;
-
+export const optimizeImage = (src) => {
     // 이미지가 이미 최적화된 경우 원본 반환
     if (src.includes('optimized') || src.includes('compressed')) {
         return src;
