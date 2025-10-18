@@ -6,13 +6,19 @@ let rafId;
 export function smooth() {
     if (lenis) return lenis;
     
+    // 모바일 감지
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
     lenis = new Lenis({ 
-        duration: 1,
+        duration: isMobile ? 0.8 : 1,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
         smoothTouch: true,
         wheelMultiplier: 1,
-        touchMultiplier: 2,
+        touchMultiplier: isMobile ? 1.5 : 2,
+        // 모바일에서 터치 스크롤 강화
+        touchInertiaMultiplier: isMobile ? 35 : 25,
+        infinite: false,
     });
 
     function raf(time) {

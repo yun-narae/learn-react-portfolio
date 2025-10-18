@@ -15,11 +15,14 @@ function ScrollToTop() {
 
 const App = () => {
     useEffect(() => {
-        // Lenis 초기화를 약간 지연시켜 DOM이 완전히 로드된 후 실행
+        // 모바일에서 Lenis 초기화 지연
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const delay = isMobile ? 200 : 50;
+        
         const timer = setTimeout(() => {
             smooth();
             link();
-        }, 50);
+        }, delay);
 
         return () => {
             clearTimeout(timer);
