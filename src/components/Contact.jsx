@@ -1,5 +1,4 @@
 import React from "react";
-import { contactText } from "../constants";
 
 const Contact = () => {
     return (

@@ -63,7 +63,7 @@
             color: var(--red100);
             background: var(--mainBg-color);
             cursor: pointer;
-            transition: background .25s ease, color .25s ease, transform .15s ease;
+            transition: background .25s ease, color .25s ease;
             &:hover {
                 background: var(--subBg100);
             }
@@ -95,11 +95,11 @@
         background: var(--subBg100);
         border-radius: 1rem;
         padding: 2rem;
-        backdrop-filter: blur(6px);
         transition: transform .3s ease, background .3s ease;
 
         &:hover {
             transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(148, 134, 120, 0.2);
         }
 
         &-head {

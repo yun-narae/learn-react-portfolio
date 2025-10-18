@@ -14,7 +14,7 @@ const Site = () => {
         const routeId = (id !== undefined && id !== null) ? String(id) : String(idx);
 
         return (
-            <article className={`site__item s${idx + 1}`} key={id ?? `${title}-${idx}`}>
+            <article id="project" className={`site__item s${idx + 1}`} key={id ?? `${title}-${idx}`}>
                 {/* 전면 링크 (카드 전체 클릭 가능) */}
                 <Link
                     to={`/projects/${routeId}`}
@@ -28,7 +28,12 @@ const Site = () => {
                 </div>
 
                 <div className="img">
-                    <img src={img} alt={imgName} />
+                    <img 
+                        src={img} 
+                        alt={imgName} 
+                        loading="lazy"
+                        decoding="async"
+                    />
                 </div>
 
                 <h3 className="title">{title}</h3>
@@ -63,7 +68,7 @@ const Site = () => {
     };
 
     return (
-        <section id="project" className="site">
+        <article id="project" className="site">
             <div className="site__inner">
                 <header className="site__header">
                     <div className="site__title-wrap">
@@ -87,7 +92,7 @@ const Site = () => {
                     {filteredSites.map((item, idx) => renderCard(item, idx))}
                 </div>
             </div>
-        </section>
+        </article>
     );
 };
 
