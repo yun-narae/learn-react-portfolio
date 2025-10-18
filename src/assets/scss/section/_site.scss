@@ -1,156 +1,195 @@
-@use './../setting' as *;
+@use "../setting/mixin";
 
-.site__inner {
-    padding: 16px;
+@use "./../setting" as *;
 
-    .site__title  {
-        position: sticky;
-        top: 70px;
-        left: 0;
-        width: 70%;
-        height: 5vw;
-        font-size: 4vw;
+/* ------------------------------------------------------------
+   Site section (모바일 1열 → tablet부터 2열)
+------------------------------------------------------------ */
+.site {
+    background: var(--mainBg-color);
+    padding: 6rem 2rem;
+
+    /* ── Layout ─────────────────────────────────────────── */
+    .site__inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .site__header {
+        margin-bottom: 2rem;
+    }
+
+    .site__title {
+        font-size: clamp(3rem, 10vw, 8rem);
         font-weight: 900;
-        line-height: 1.6;
-        font-family: var(--mainKor-font);
-        text-transform: uppercase;
-        color: var(--black100);
-        border-bottom: 0.4vw solid var(--black100);
-        margin-bottom: 100px;
-
-        @media (max-width: 800px){ 
-            width: 100%;
-            margin-bottom: 10vw;
-            font-size: 30px;
-            height: auto;
-            top: 68px;
-            z-index: 1000;
-            background-color: var(--mainBg-color);
-        }
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: var(--red100);
 
         em {
-            font-size: 1.25rem;
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 1rem;
             font-weight: 400;
-            line-height: 2;
+            opacity: 0.8;
         }
     }
 
-    .site__wrap {
-        .site__item {
-            height: 70vh;
-            @include flex-center;
-            flex-direction: column;
-            position: sticky;
-            left: 0;
+    /* 타이틀 + 필터: 모바일 기본은 수직, tablet부터 수평 배치 */
+    .site__title-wrap {
+        display: flex;
+        gap: 2rem;
 
-            &.s1 {
-                background-color: var(--subBg100);
-                top: 180px;
+        /* 모바일 기본 */
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-                @media (max-width: 800px){ 
-                    top: 140px;
+    .site__filter {
+        display: flex;
+        gap: 0.8rem;
+       flex-wrap: wrap;
+
+        button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            border: 0;
+            border-radius: 6px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--red100);
+            background: var(--mainBg-color);
+            cursor: pointer;
+            transition: background .25s ease, color .25s ease;
+            &:hover {
+                background: var(--subBg100);
+            }
+            &.active {
+                color: var(--white);
+                background: var(--red100);
+                &:hover {
+                    background: var(--red100);
                 }
             }
-            &.s2 {
-                background-color: var(--subBg200);
-                top: 200px;
+        }
+    }
 
-                @media (max-width: 800px){ 
-                    top: 160px;
+    /* ── Grid list ──────────────────────── */
+    .site__grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+
+        @include mixin.tablet {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    /* ── Card ───────────────────────────────────────────── */
+    .site__item {
+        position: relative;
+        width: 100%;
+        background: var(--subBg100);
+        border-radius: 1rem;
+        padding: 2rem;
+        transition: transform .3s ease, background .3s ease;
+
+        &:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(148, 134, 120, 0.2);
+        }
+
+        &-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .card-link {
+            position: absolute;
+            inset: 0;
+            /* 접근성: 포커스링 표시 */
+            outline: none;
+        }
+
+        .num {
+            display: block;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--red100);
+        }
+
+        .type {
+            font-size: .95rem;
+            line-height: 1.55;
+            background: var(--subBg200);
+            color: var(--red100);
+            padding: 0.4rem;
+            font-size: 0.8rem;
+            border-radius: 6px;
+        }
+
+        .title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: .6rem;
+        }
+
+        .keyword {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: .8rem;
+            opacity: .9;
+            font-size: .95rem;
+            line-height: 1.55;
+            color: var(--black300);
+        }
+
+        .img {
+            margin-bottom: .8rem;
+
+            img {
+                border-radius: 1rem;
+            }
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            gap: .75rem;
+
+            a {
+                position: relative; /* 오버레이 위에서도 클릭 가능 */
+                z-index: 1;
+                display: inline-block;
+                padding: .6rem 1.2rem;
+                border-radius: 8px;
+                font-weight: 600;
+                font-size: .9rem;
+                color: #fff;
+                background: var(--red100);
+                transition: transform .2s ease, background .2s ease;
+
+                &:hover {
+                    transform: translateY(-2px);
+                    /* CSS 변수와 함께 안전하게 동작하는 hover 색상 */
+                    background: color-mix(in srgb, var(--red100), white 12%);
                 }
             }
-            &.s3 {
-                background-color: var(--subBg300);
-                top: 220px;
+        }
 
-                @media (max-width: 800px){ 
-                    top: 180px;
-                }
-            }
-            &.s4 {
-                background-color: var(--subBg400);
-                top: 240px;
+        .info {
+            margin-top: 1rem;
 
-                @media (max-width: 800px){ 
-                    top: 200px;
-                }
-            }
-            .num {
-                font-size: 5vw;
-                line-height: 1;
-                font-weight: 900;
-                font-family: var(--mainNum-font);
-                position: absolute;
-                left: 1vw;
-                top: 1vw;
-
-                @media (max-width: 800px){ 
-                    font-size: 80px;
-                    left: 20px;
-                    top: 20px;
-                }
-            }
-            .text {
-                text-align: center;
-                margin-bottom: 1rem;
-
-                > div {
-                    font-size: 3vw;
-                    line-height: 1;
-                    font-weight: 900;
-                    text-transform: uppercase;
-                    text-decoration: underline;
-                    font-family: var(--mainEng-font);
-
-                    @media (max-width: 800px){ 
-                        font-size: 26px;
-                    }
-                }
-            }
-            .title {
-                font-family: var(--mainKor-font);
-                margin-bottom: 1rem;
-            }
-            .btn {
-                a {
-                    text-decoration: underline;
-                    text-transform: uppercase;
-                    color: var(--black200);
-                    font-size: 1rem;
-                    transition: all 0.3s;
-                    margin: 0 2px;
-
-                    &:hover {
-                        color: var(--black);
-                    }
-                }
-            }
-            .info {
-                position: absolute;
-                left: 0;
-                top: 7vw;
-                width: 98%;
-                margin-left: 1%;
-                border-top: 1px solid var(--black100);
-                border-bottom: 1px solid var(--black100);
-                display: flex;
-                justify-content: space-between;
-
-                @media (max-width: 800px){ 
-                    top: rem(120px);
-                    flex-direction: column;
-                    width: 90%;
-                    margin-left: 5%;
-                    padding: 5px 0;
-                }
-
-                span {
-                    font-family: var(--mainKor-font);
-                    font-size: 12px;
-                    padding: 3px 0;
-                    text-transform: uppercase;
-                    color: var(--black100);
-                }
+            span {
+                font-size: .9rem;
+                opacity: .8;
             }
         }
     }

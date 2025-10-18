@@ -1,8 +1,7 @@
-@import "contact";
-@import "footer";
-@import "header";
-@import "intro";
-@import "port";
-@import "site";
-@import "skill";
-@import "skip";
+@forward "contact";
+@forward "footer";
+@forward "header";
+@forward "intro";
+@forward "site";
+@forward "skill";
+@forward "siteDetail";

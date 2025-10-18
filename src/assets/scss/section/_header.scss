@@ -1,3 +1,5 @@
+@use "../setting/mixin";
+
 @use './../setting' as *;
 
 %button-reset {
@@ -17,9 +19,8 @@
     right: 0;
     left: 0;
     z-index: 100;
-    background-color: rgba(0, 0, 0, 0.2);;
 
-    @include laptop {
+    @include mixin.laptop {
         background-color: transparent;
     }
 
@@ -28,7 +29,7 @@
         align-items: center;
         justify-content: center;
 
-        @include laptop {
+        @include mixin.laptop {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -38,10 +39,10 @@
         .header__logo {
             font-size: rem(18px);
             font-weight: 800;
-            @include flex-between;
+            @include mixin.flex-between;
 
             em {
-                color: #df2929;
+                color: var(--red100);
                 font-weight: 400;
                 font-size: rem(12px);
                 padding: rem(4px) rem(6px);
@@ -78,7 +79,7 @@
                 background-color: rgba(0, 0, 0, 0.2);;
             }
 
-            @include laptop {
+            @include mixin.laptop {
                 position: unset;
                 height: auto;
                 display: flex;
@@ -96,13 +97,13 @@
                 word-break: keep-all;
                 display: grid;
                 row-gap: rem(12px);
-                @include laptop {
+                @include mixin.laptop {
                     display: flex;
                 }
     
                 &__list {
                     cursor: pointer;
-                    @include laptop {
+                    @include mixin.laptop {
                         margin: 0px;
                     }
 
@@ -136,7 +137,7 @@
         &:hover {
             background-color: rgba(0, 0, 0, 0.2);;
         }
-        @include laptop {
+        @include mixin.laptop {
             display: none;
         }
     }
