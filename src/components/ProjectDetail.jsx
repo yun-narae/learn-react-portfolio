@@ -384,12 +384,6 @@ const ProjectDetail = () => {
                                                         onKeyDown={(e) => {
                                                             if (e.key === "Enter" || e.key === " ") openPreview(img.src);
                                                         }}
-                                                        style={{ 
-                                                            cursor: "zoom-in",
-                                                            width: '100%',
-                                                            height: 'auto',
-                                                            objectFit: 'cover'
-                                                        }}
                                                     />
                                                 </li>
                                             ))}

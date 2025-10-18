@@ -5,7 +5,7 @@ import SvgIcon from "./SvgIcon/SvgIcon";
 
 const Skill = () => {
     return (
-        <section id="skill" className="skill">
+        <article id="skill" className="skill">
             <div className="skill__inner">
                 <h2 className="skill__title">ABOUT ME</h2>
 
@@ -50,7 +50,7 @@ const Skill = () => {
                     </div>
                 </div>
             </div>
-        </section>
+        </article>
     );
 };
 
