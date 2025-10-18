@@ -6,11 +6,33 @@
 
 /* ---- Lenis base styles ---- */
 html.lenis,
-.lenis body { height: auto; }
+.lenis body { 
+    height: auto; 
+    touch-action: pan-y; /* 모바일 터치 스크롤 허용 */
+}
 
-.lenis.lenis-smooth { scroll-behavior: auto !important; } /* 네이티브 smooth OFF */
+.lenis.lenis-smooth { 
+    scroll-behavior: auto !important; /* 네이티브 smooth OFF */
+}
 
-.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-stopped { 
+    overflow: hidden; 
+}
 
 /* 혹시 다른 곳에서 smooth를 켰다면 끄기 */
-html, body { scroll-behavior: auto !important; }
+html, body { 
+    scroll-behavior: auto !important; 
+    touch-action: pan-y; /* 모바일 터치 스크롤 허용 */
+}
+
+/* 모바일 터치 스크롤 최적화 */
+@media (max-width: 768px) {
+    html, body {
+        -webkit-overflow-scrolling: touch; /* iOS 부드러운 스크롤 */
+        overscroll-behavior: contain; /* 스크롤 체이닝 방지 */
+    }
+    
+    * {
+        touch-action: manipulation; /* 더블탭 줌 방지 */
+    }
+}
