@@ -1,13 +1,20 @@
 // src/pages/Site.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { siteText } from "../constants";
+import { preloadImages } from "../utils/imageOptimizer";
 
 const Site = () => {
     const [filter, setFilter] = useState("ALL");
 
     const filteredSites =
         filter === "ALL" ? siteText : siteText.filter((s) => s.type === filter);
+
+    // 이미지 preload
+    useEffect(() => {
+        const imageSrcs = siteText.map(site => site.img);
+        preloadImages(imageSrcs);
+    }, []);
 
     const renderCard = ({ img, imgName, keyword, type, title, code, view, info, id }, idx) => {
         // 라우팅에 사용할 식별자: id가 있으면 id, 없으면 idx 사용

@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import about from "../assets/img/aboutme.jpg";
 import { introText } from "../constants"
 import SvgIcon from './SvgIcon/SvgIcon';
+import { preloadImages } from "../utils/imageOptimizer";
 
 const Intro = () => {
+    // 이미지 preload
+    useEffect(() => {
+        preloadImages([about]);
+    }, []);
+
     return (
         <section id="intro">
             <div className="intro__inner">
@@ -24,7 +30,12 @@ const Intro = () => {
                         <p className="intro__text-text">{introText.text}</p>
                     </div>
                     <div className="img">
-                        <img src={about} alt="윤나래 프로필" />
+                        <img 
+                            src={about} 
+                            alt="윤나래 프로필" 
+                            loading="eager"
+                            decoding="async"
+                        />
                     </div>
                 </div>
                 <span className="update">update.2025.10</span>
