@@ -8,12 +8,12 @@ import Contact from '../components/Contact';
 
 const HomeView = () => {
     return (
-        <Main>
+        <>
             <Intro />
             <Skill />
             <Site />
             <Contact />
-        </Main>
+        </>
     );
 };
 

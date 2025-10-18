@@ -11,7 +11,7 @@ const RootLayout = () => {
     return (
         <div id="wrap">
             {!hideHeader && <Header />}
-            <main id="main">
+            <main id="main" role="main">
                 <Outlet />
             </main>
             <BackToTop />
