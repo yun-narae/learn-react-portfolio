@@ -1,6 +1,7 @@
 import Lenis from "@studio-freight/lenis";
 
 let lenis;
+let rafId;
 
 export function smooth() {
     if (lenis) return lenis;
@@ -16,10 +17,10 @@ export function smooth() {
 
     function raf(time) {
         lenis.raf(time);
-        requestAnimationFrame(raf);
+        rafId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     // 디버깅용
     if (typeof window !== "undefined") {
@@ -53,3 +54,15 @@ export function scrollTo(target, opts = {}) {
 }
 
 export const getLenis = () => lenis;
+
+// 정리 함수 추가
+export const destroySmooth = () => {
+    if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+    }
+    if (lenis) {
+        lenis.destroy();
+        lenis = null;
+    }
+};
