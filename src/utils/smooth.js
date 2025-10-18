@@ -1,48 +1,41 @@
-import Lenis from "lenis";
+import Lenis from "@studio-freight/lenis";
 
-let lenis;           // 싱글톤 인스턴스
-let rafId = null;    // RAF 루프 아이디
+let lenis;
 
-function startRAF() {
-    if (rafId) return;
-    const loop = (time) => {
-        if (lenis) lenis.raf(time);
-        rafId = requestAnimationFrame(loop);
-    };
-    rafId = requestAnimationFrame(loop);
-}
-
-export default function smooth(options = {}) {
+export function smooth() {
     if (lenis) return lenis;
-    lenis = new Lenis({
-        duration: 1.5,
-        easing: (t) => Math.min(1, 1.8 - Math.pow(2, -10 * t)),
+    
+    lenis = new Lenis({ 
+        duration: 1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
         smoothTouch: true,
-        ...options,
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
     });
-    startRAF();
-    if (typeof window !== "undefined") window.__lenis = lenis; // 디버깅용
-    return lenis;
-}
 
-export const getLenis = () => lenis || (typeof window !== "undefined" ? window.__lenis : null);
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
 
-/** Lenis가 멈춰있거나( stop() ) RAF가 죽었으면 자동 복구 */
-export function ensureLenisRunning() {
-    if (!lenis) smooth();
-    // 일부 버전은 내부 플래그가 __isStopped 로 들어있음
-    const stopped = lenis?.isStopped || lenis?.__isStopped;
-    if (stopped && lenis?.start) lenis.start();
-    startRAF();
+    requestAnimationFrame(raf);
+
+    // 디버깅용
+    if (typeof window !== "undefined") {
+        window.__lenis = lenis;
+    }
+
     return lenis;
 }
 
 export function scrollTo(target, opts = {}) {
-    const l = ensureLenisRunning();
+    if (!lenis) smooth();
+    
     try {
-        l.scrollTo(target, opts); // target: number | element | selector
-    } catch {
+        lenis.scrollTo(target, opts);
+    } catch (error) {
+        console.warn("Lenis scrollTo failed, using fallback:", error);
         // 폴백
         if (typeof target === "number") {
             window.scrollTo({ top: target, behavior: "smooth" });
@@ -58,3 +51,5 @@ export function scrollTo(target, opts = {}) {
         }
     }
 }
+
+export const getLenis = () => lenis;

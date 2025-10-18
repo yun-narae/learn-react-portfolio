@@ -1,7 +1,7 @@
 // src/App.jsx
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-import smooth from "./utils/smooth";
+import { smooth } from "./utils/smooth";
 import link from "./utils/link";
 import RootLayout from "./layouts/RootLayout";
 import HomeView from "./views/HomeView";
