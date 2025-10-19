@@ -3,24 +3,24 @@
 @use "./../setting" as *;
 
 /* ------------------------------------------------------------
-   Site section (모바일 1열 → tablet부터 2열)
+   Project section (모바일 1열 → tablet부터 2열)
 ------------------------------------------------------------ */
-.site {
+.project {
     background: var(--mainBg-color);
     padding: 6rem 2rem;
 
     /* ── Layout ─────────────────────────────────────────── */
-    .site__inner {
+    .project__inner {
         max-width: 1200px;
         margin: 0 auto;
         position: relative;
     }
 
-    .site__header {
+    .project__header {
         margin-bottom: 2rem;
     }
 
-    .site__title {
+    .project__title {
         font-size: clamp(3rem, 10vw, 8rem);
         font-weight: 900;
         line-height: 1.1;
@@ -37,7 +37,7 @@
     }
 
     /* 타이틀 + 필터: 모바일 기본은 수직, tablet부터 수평 배치 */
-    .site__title-wrap {
+    .project__title-wrap {
         display: flex;
         gap: 2rem;
 
@@ -46,7 +46,7 @@
         align-items: flex-start;
     }
 
-    .site__filter {
+    .project__filter {
         display: flex;
         gap: 0.8rem;
        flex-wrap: wrap;
@@ -78,7 +78,7 @@
     }
 
     /* ── Grid list ──────────────────────── */
-    .site__grid {
+    .project__grid {
         display: grid;
         grid-template-columns: 1fr;
         gap: 1.25rem;
@@ -89,7 +89,7 @@
     }
 
     /* ── Card ───────────────────────────────────────────── */
-    .site__item {
+    .project__item {
         position: relative;
         width: 100%;
         background: var(--subBg100);
@@ -134,9 +134,10 @@
         }
 
         .title {
-            font-size: 1.4rem;
-            font-weight: 700;
+            font-size: 1.8rem;
+            font-weight: 800;
             margin-bottom: .6rem;
+            color: var(--red100);
         }
 
         .keyword {
@@ -197,3 +198,4 @@
         }
     }
 }
+

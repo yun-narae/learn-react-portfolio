@@ -1,10 +1,10 @@
-// src/pages/Site.jsx
+// src/pages/Project.jsx
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { siteText } from "../constants";
 import { preloadImages } from "../utils/imageOptimizer";
 
-const Site = () => {
+const Project = () => {
     const [filter, setFilter] = useState("ALL");
 
     const filteredSites =
@@ -21,7 +21,7 @@ const Site = () => {
         const routeId = (id !== undefined && id !== null) ? String(id) : String(idx);
 
         return (
-            <article id="project" className={`site__item s${idx + 1}`} key={id ?? `${title}-${idx}`}>
+            <article id="project" className={`project__item s${idx + 1}`} key={id ?? `${title}-${idx}`}>
                 {/* 전면 링크 (카드 전체 클릭 가능) */}
                 <Link
                     to={`/projects/${routeId}`}
@@ -29,7 +29,7 @@ const Site = () => {
                     aria-label={`프로젝트 상세: ${title}`}
                 />
 
-                <div className="site__item-head">
+                <div className="project__item-head">
                     <span className="num">{idx + 1}.</span>
                     <p className="type">{type}</p>
                 </div>
@@ -75,13 +75,13 @@ const Site = () => {
     };
 
     return (
-        <article id="project" className="site">
-            <div className="site__inner">
-                <header className="site__header">
-                    <div className="site__title-wrap">
-                        <h2 className="site__title">MY PROJECT</h2>
+        <article id="project" className="project">
+            <div className="project__inner">
+                <header className="project__header">
+                    <div className="project__title-wrap">
+                        <h2 className="project__title">MY PROJECT</h2>
 
-                        <div className="site__filter">
+                        <div className="project__filter">
                             {["ALL", "PERSONAL", "TEAM"].map((cat) => (
                                 <button
                                     key={`cat-${cat}`}
@@ -95,7 +95,7 @@ const Site = () => {
                     </div>
                 </header>
 
-                <div className="site__grid">
+                <div className="project__grid">
                     {filteredSites.map((item, idx) => renderCard(item, idx))}
                 </div>
             </div>
@@ -103,4 +103,5 @@ const Site = () => {
     );
 };
 
-export default Site;
+export default Project;
+
