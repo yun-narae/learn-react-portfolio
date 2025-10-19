@@ -4,6 +4,24 @@ import { Interview, resumeData } from "../constants";
 import SvgIcon from "./SvgIcon/SvgIcon";
 
 const Skill = () => {
+    // **텍스트**를 <strong>으로 변환하는 함수
+    const parseDescription = (text) => {
+        const parts = text.split(/(\*\*.*?\*\*)/g);
+        return parts.map((part, index) => {
+            if (part.startsWith('**') && part.endsWith('**')) {
+                const content = part.slice(2, -2);
+                return <strong key={index}>{content}</strong>;
+            }
+            // 줄바꿈 처리
+            return part.split('\n').map((line, i, arr) => (
+                <React.Fragment key={`${index}-${i}`}>
+                    {line}
+                    {i < arr.length - 1 && <br />}
+                </React.Fragment>
+            ));
+        });
+    };
+
     return (
         <article id="skill" className="skill">
             <div className="skill__inner">
@@ -62,7 +80,7 @@ const Skill = () => {
                                     <span>{key + 1}.</span>
                                     {skill.title}
                                 </h3>
-                                <p>{skill.desc}</p>
+                                <p>{parseDescription(skill.desc)}</p>
                             </li>
                         ))}
                     </ul>

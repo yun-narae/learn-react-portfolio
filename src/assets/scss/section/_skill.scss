@@ -7,14 +7,14 @@
     background: var(--red100);
     color: var(--mainBg-color);
     padding: 6rem 2rem;
-
+    
     .skill__inner {
         display: flex;
         flex-direction: column;
         gap: 4rem;
         max-width: 1200px;
         margin: 0 auto;
-        
+
         @include mixin.tablet {
             display: grid;
             grid-template-columns: 0.6fr 1fr;
@@ -87,7 +87,17 @@
             p {
                 font-size: 1rem;
                 line-height: 1.6;
+                font-weight: 500;
                 opacity: 0.9;
+                word-break: keep-all;
+                white-space: normal;
+
+                strong {
+                    font-weight: 800;
+                    color: var(--mainBg-color);
+                    opacity: 1;
+                    text-decoration: underline;
+                }
             }
 
             &.profile {
