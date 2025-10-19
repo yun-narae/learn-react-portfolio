@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import BackToTop from "../components/BackToTop/BackToTop";
+import CopyEmail from "../components/CopyEmail/CopyEmail";
 
 const RootLayout = () => {
     const { pathname } = useLocation();
@@ -14,6 +15,7 @@ const RootLayout = () => {
             <main id="main" role="main">
                 <Outlet />
             </main>
+            <CopyEmail />
             <BackToTop />
             <Footer />
         </div>
