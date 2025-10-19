@@ -14,13 +14,19 @@
         gap: 4rem;
         max-width: 1200px;
         margin: 0 auto;
+        
         @include mixin.tablet {
             display: grid;
             grid-template-columns: 0.6fr 1fr;
         }
-        @include mixin.laptop {
-
-        }
+    }
+    
+    .skill__inner-title {
+        font-size: clamp(1rem, 6vw, 4rem);
+        font-weight: 900;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: var(--mainBg-color);
     }
 
     .skill__title {
@@ -29,8 +35,8 @@
         line-height: 1.1;
         letter-spacing: -0.02em;
         color: var(--mainBg-color);
-        
         white-space: nowrap;
+
         @include mixin.tablet {
             white-space: normal;
             position: sticky;
@@ -83,6 +89,59 @@
                 line-height: 1.6;
                 opacity: 0.9;
             }
+
+            &.profile {
+                
+                h3 {
+                    font-size: 1.6rem;
+                    font-weight: 700;
+                    margin-bottom: 0.8rem;
+                }
+
+                ul {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+
+                    & li {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.3rem;
+                        word-break: keep-all;
+                        white-space: normal;
+
+                        .skill__meta {
+                            display: flex;
+                            align-items: center;
+                            gap: 0.4rem;
+                            width: fit-content;
+                            padding: 0.3rem 0.5rem;
+                            border-radius: 0.25rem;
+                            background-color: rgba(0, 0, 0, 0.1);
+                            
+                            .skill__divider {
+                                width: 1px;
+                                height: 0.7em;
+                                background: rgba(255,255,255,0.6);
+                                margin: 0.2rem;
+                                border-radius: 1px;
+                            }
+                        }
+
+                        .skill__info {
+                            padding: 0.2rem;
+                            
+                            span {
+                                font-weight: 800;
+                            }
+                        }
+
+                        .skill__date {
+                            white-space: nowrap;
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -91,17 +150,6 @@
         display: flex;
         flex-direction: column;
         gap: 2rem;
-        padding: 2rem;
-        background: rgba(255, 255, 255, 0.08);
-        border-radius: 12px;
-
-        h3 {
-            font-size: clamp(1rem, 6vw, 4rem);
-            font-weight: 900;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            color: var(--mainBg-color);
-        }
 
         &-group {
             background: rgba(255, 255, 255, 0.08);
