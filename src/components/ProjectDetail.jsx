@@ -127,24 +127,61 @@ const ProjectDetail = () => {
         const targets = sectionRefs.current.map((r) => r.current).filter(Boolean);
         if (!targets.length) return;
 
+        let scrollTimeout;
+        let isScrolling = false;
+
         const io = new IntersectionObserver(
             (entries) => {
+                // 스크롤 중에만 업데이트
+                if (!isScrolling) return;
+
                 if (window.scrollY < 10) {
                     setActive(0);
                     return;
                 }
+
+                // 가장 많이 보이는 섹션 찾기
+                let maxRatio = 0;
+                let maxIndex = -1;
+
                 entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
+                    if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
                         const i = targets.indexOf(entry.target);
-                        if (i > -1) setActive(i);
+                        if (i > -1) {
+                            maxRatio = entry.intersectionRatio;
+                            maxIndex = i;
+                        }
                     }
                 });
+
+                if (maxIndex > -1) {
+                    setActive(maxIndex);
+                }
             },
-            { threshold: 0.1, rootMargin: "-40% 0px -55% 0px" }
+            { 
+                threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+                rootMargin: "-20% 0px -60% 0px" 
+            }
         );
 
+        // 스크롤 이벤트 리스너
+        const handleScroll = () => {
+            isScrolling = true;
+            clearTimeout(scrollTimeout);
+            
+            scrollTimeout = setTimeout(() => {
+                isScrolling = false;
+            }, 150);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
         targets.forEach((t) => io.observe(t));
-        return () => io.disconnect();
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            io.disconnect();
+            clearTimeout(scrollTimeout);
+        };
     }, []);
 
     // projectData 에도, siteText 보조에도 없으면 404 처리
@@ -255,10 +292,11 @@ const ProjectDetail = () => {
                                         className="project__aside-link"
                                         onClick={(e) => {
                                         e.preventDefault();
+                                        // 클릭 시 즉시 active 변경
+                                        setActive(i);
                                         const el = refFor(nav.id)?.current;
                                         if (el) {
                                             scrollTo(el, { offset: -HEADER_OFFSET, duration: 1.2 });
-                                            setActive(i);
                                         }
                                         }}
                                     >

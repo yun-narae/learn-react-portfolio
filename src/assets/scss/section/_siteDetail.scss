@@ -170,6 +170,10 @@
         flex-direction: column;
         gap: 4rem;
 
+        @include tablet {
+            gap: 6rem;
+        }
+
         &-section {
             display: flex;
             flex-direction: column;
