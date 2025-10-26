@@ -50,6 +50,8 @@ const ProjectDetail = () => {
     const meta = proj?.meta || item?.meta || {};
     const view = item?.view;
     const code = item?.code;
+    const figma = item?.figma || meta?.figma;
+    const storybook = item?.storybook || meta?.storybook;
     const imgName = item?.imgName || headerTitle;
     const imageSrc = item?.img || "/images/placeholder.jpg";
     const imageAlt = imgName || `${headerTitle} 미리보기`;
@@ -243,7 +245,7 @@ const ProjectDetail = () => {
                             <div className="project__buttons" role="group" aria-label="프로젝트 바로가기">
                                 {view && (
                                     <a
-                                        className="btn btn--outline"
+                                        className="btn btn--fill"
                                         href={view}
                                         target="_blank"
                                         rel="noopener noreferrer"
@@ -254,13 +256,35 @@ const ProjectDetail = () => {
                                 )}
                                 {code && (
                                     <a
-                                        className="btn btn--outline"
+                                        className="btn btn--fill"
                                         href={code}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label="코드 보기 새 탭에서 열림"
                                     >
                                         code
+                                    </a>
+                                )}
+                                {figma && (
+                                    <a
+                                        className="btn btn--outline"
+                                        href={figma}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label="피그마 디자인 새 탭에서 열림"
+                                    >
+                                        figma
+                                    </a>
+                                )}
+                                {storybook && (
+                                    <a
+                                        className="btn btn--outline"
+                                        href={storybook}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label="스토리북 문서 새 탭에서 열림"
+                                    >
+                                        storybook
                                     </a>
                                 )}
                             </div>
