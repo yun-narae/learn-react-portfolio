@@ -1,6 +1,7 @@
 import ounwanthumbnail from "../assets/img/ounwan/ounwanthumbnail.png";
 import youtubethumbnail from "../assets/img/youtube/youtubethumbnail.png";
 import taingthumbnail from "../assets/img/taing/taingthumbnail.png";
+import yorijorithumbnail from "../assets/img/yorijori/yorijorithumbnail.png";
 
 export const headerNav = [
     { title: "intro", url: "#intro" },
@@ -84,11 +85,13 @@ export const siteText = [
         id: "personal-1",
         type: "PERSONAL",
         title: "요리조리",
-        img: ounwanthumbnail,
+        img: yorijorithumbnail,
         imgName: "요리조리 프로젝트 썸네일",
         keyword: ["반응형", "TailwindCss", "백엔드 연동"],
         code: "https://github.com/yun-narae/yorijori-project",
         view: "https://yorijori-project.netlify.app/",
+        figma: "https://www.figma.com/design/5ciRroQPBXch89GZH00bXG/%EC%9A%94%EB%A6%AC%EC%A1%B0%EB%A6%AC?node-id=95-238&t=vYjyPCfa6nmNz630-1",
+        storybook: "https://68405fe9d2dbe29f4a848815-alwrcaaikd.chromatic.com/?path=/docs/components-actions-editanddelete--docs&globals=theme:light",
     },
     {
         id: "team-1",
@@ -99,6 +102,7 @@ export const siteText = [
         keyword: ["퍼블리싱", "TypeScript", "module.css"],
         code: "https://github.com/FRONTENDSCHOOL10/5unwan",
         view: "https://dgdg-ooo.netlify.app/",
+        figma: "https://www.figma.com/design/mhFYBELGJMViPSpPqYO1PS/%EC%98%A4%EC%9A%B4%EC%99%84?node-id=1-2&t=kGuC8YVGKuB1Uzvj-1",
     },
     {
         id: "personal-2",

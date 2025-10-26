@@ -1,3 +1,17 @@
+// 요리조리
+import yorijoriMain from "../assets/img/yorijori/main.png";
+import yorijoriMyPage from "../assets/img/yorijori/my-page.png";
+import yorijoriPostCreate from "../assets/img/yorijori/post-creat.png";
+import yorijoriPostCreatePreview from "../assets/img/yorijori/post-creat-preview.png";
+import yorijoriPostDetail from "../assets/img/yorijori/post-detail.png";
+import yorijoriCategoryPage from "../assets/img/yorijori/category-page.gif";
+import yorijoriComment from "../assets/img/yorijori/comment.gif";
+import yorijoriDark from "../assets/img/yorijori/dark.gif";
+import yorijoriMyPost from "../assets/img/yorijori/my-post.gif";
+import yorijoriParticipation from "../assets/img/yorijori/participation.gif";
+import yorijoriReaction from "../assets/img/yorijori/reaction.gif";
+import yorijoriReactionPostDetail from "../assets/img/yorijori/reaction-postDetail.gif";
+
 // 득근득근
 import ounwanWorkoutYoutube from "../assets/img/ounwan/workout-youtube.png";
 import ounwanMyPage from "../assets/img/ounwan/my-page.png";
@@ -31,7 +45,7 @@ export const projectData = {
         title: "요리조리",
         meta: {
             oneLine: "요리로 사람을 연결하는 모임 기반 커뮤니티 플랫폼",
-            period: "2025.07 ~ 진행중",
+            period: "2025.07 ~ 2025.11",
             role: "기획 · 디자인 · 프론트엔드 개발 · 백엔드 연동",
             stack: ["React", "Vite", "TailwindCSS", "PocketBase"],
         },
@@ -112,8 +126,34 @@ export const projectData = {
             },
         ],
         workScreen: {
-            src: [taingMain, taingMain],
-            alt: ["port02-이미지", "port03-이미지"],
+            src: [
+                yorijoriMain,
+                yorijoriMyPage,
+                yorijoriPostCreate,
+                yorijoriPostCreatePreview,
+                yorijoriPostDetail,
+                yorijoriCategoryPage,
+                yorijoriComment,
+                yorijoriDark,
+                yorijoriMyPost,
+                yorijoriParticipation,
+                yorijoriReaction,
+                yorijoriReactionPostDetail
+            ],
+            alt: [
+                "메인 페이지",
+                "마이페이지",
+                "모임 등록",
+                "모임 등록 미리보기",
+                "모임 상세",
+                "카테고리 페이지",
+                "댓글 기능",
+                "다크모드",
+                "내가 작성한 글",
+                "모임 참여",
+                "반응형",
+                "상세 페이지 반응형"
+            ],
         },
         retrospect: {
             quote: "“처음으로 완전한 CRUD + 사용자 흐름이 구현된 프로젝트였다.”",
@@ -231,8 +271,24 @@ export const projectData = {
             },
         ],
         workScreen: {
-            src: [ounwanWorkoutYoutube, ounwanMyPage, ounwanWorkoutRecordModal, ounwanWorkoutCheck, ounwanMapSearchFilter, ounwanDarkMode, ounwanDesignSystem],
-            alt: ["유튜브 API", "마이페이지", "운동기록 모달창", "운동기록 확인", "지도 검색 및 필터", "다크모드", "디자인 시스템"],
+            src: [
+                ounwanWorkoutYoutube,
+                ounwanMyPage,
+                ounwanWorkoutRecordModal,
+                ounwanWorkoutCheck,
+                ounwanMapSearchFilter,
+                ounwanDarkMode,
+                ounwanDesignSystem
+            ],
+            alt: [
+                "유튜브 API",
+                "마이페이지",
+                "운동기록 모달창",
+                "운동기록 확인",
+                "지도 검색 및 필터",
+                "다크모드",
+                "디자인 시스템"
+            ],
         },
         retrospect: {
             quote: "“빠듯한 일정 속에서도 팀의 합을 맞추는 것이 곧 품질이었다.”",
@@ -306,8 +362,24 @@ export const projectData = {
             }
         ],
         workScreen: {
-            src: [youtubeMain, youtubeChannel, youtubeSearch, youtubeDarkMode, youtubeMore, youtubeReaction, youtubeSkeleton],
-            alt: ["메인 페이지", "채널 페이지", "검색", "다크모드", "더보기", "반응형", "스켈렉톤"],
+            src: [
+                youtubeMain,
+                youtubeChannel,
+                youtubeSearch,
+                youtubeDarkMode,
+                youtubeMore,
+                youtubeReaction,
+                youtubeSkeleton
+            ],
+            alt: [
+                "메인 페이지",
+                "채널 페이지",
+                "검색",
+                "다크모드",
+                "더보기",
+                "반응형",
+                "스켈렉톤"
+            ],
         },
         retrospect: {
             quote: "“외부 API 중심 서비스에서 ‘느낌 좋은 속도’는 데이터 전략과 UI 스켈레톤의 합이었다.”",
@@ -415,8 +487,26 @@ export const projectData = {
             }
         ],
         workScreen: {
-            src: [taingMain, taingFindIdDisable, taingFindIdActive, taingFindIdError, taingProfileSelect, taingSearch, taingReaction, taingSkeleton],
-            alt: ["메인 페이지", "아이디 찾기(버튼 비활성화)", "아이디 찾기(버튼 활성화)", "아이디 찾기(오류 페이지)", "프로필 선택 페이지", "검색", "반응형", "스켈렉톤"],
+            src: [
+                taingMain,
+                taingFindIdDisable,
+                taingFindIdActive,
+                taingFindIdError,
+                taingProfileSelect,
+                taingSearch,
+                taingReaction,
+                taingSkeleton
+            ],
+            alt: [
+                "메인 페이지",
+                "아이디 찾기(버튼 비활성화)",
+                "아이디 찾기(버튼 활성화)",
+                "아이디 찾기(오류 페이지)",
+                "프로필 선택 페이지",
+                "검색",
+                "반응형",
+                "스켈렉톤"
+            ],
         },
         retrospect: {
             quote: "“협업에서는 코드보다 먼저 소통과 규칙이 성능을 만든다.”",
