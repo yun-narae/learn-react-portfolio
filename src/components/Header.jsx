@@ -9,7 +9,7 @@ const Header = () => {
                 {/* 로고 */}
                 <h1 className="header__logo">
                     <a href="/" tabIndex={0}>
-                        portfolio<em>React</em>
+                        portfolio
                     </a>
                 </h1>
 
