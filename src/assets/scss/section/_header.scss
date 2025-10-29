@@ -2,6 +2,10 @@
 
 @use './../setting' as *;
 
+.sr-only {
+    @include mixin.a11yHidden;
+}
+
 %button-reset {
     background-color: transparent;
     border: none;
@@ -36,11 +40,17 @@
             padding: rem(12px) rem(18px);
         }
 
-        .header__logo {
-            font-size: rem(18px);
-            font-weight: 800;
+        .header__icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            vertical-align: middle;
+            transition: .3s;
             color: rgba(0, 0, 0, 0.6);
-            @include mixin.flex-between;
+            
+            &:hover {
+                color: #B62C33;
+            }
         }
 
         .header__nav {
