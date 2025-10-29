@@ -2,6 +2,10 @@
 
 @use './../setting' as *;
 
+.sr-only {
+    @include mixin.a11yHidden;
+}
+
 %button-reset {
     background-color: transparent;
     border: none;
@@ -36,20 +40,16 @@
             padding: rem(12px) rem(18px);
         }
 
-        .header__logo {
-            font-size: rem(18px);
-            font-weight: 800;
-            @include mixin.flex-between;
-
-            em {
-                color: var(--red100);
-                font-weight: 400;
-                font-size: rem(12px);
-                padding: rem(4px) rem(6px);
-                border-radius: rem(4px);
-                background-color: rgba(0, 0, 0, 0.2);;
-                margin-left: rem(8px);
-                margin-bottom: rem(4px);
+        .header__icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            vertical-align: middle;
+            transition: .3s;
+            color: rgba(0, 0, 0, 0.6);
+            
+            &:hover {
+                color: #B62C33;
             }
         }
 
@@ -64,6 +64,7 @@
             margin-top: rem(20px);
             padding: 20px;
             background-color: transparent;
+            color: rgba(0, 0, 0, 0.6);
 
             // active style
             transition: transform 0.3s ease-in-out;

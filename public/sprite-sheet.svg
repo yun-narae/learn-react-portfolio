@@ -1,4 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <symbol id="small-flame" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 13.5C19.5 6.75 12 2.25 12 2.25S4.5 6.75 4.5 13.5a7.5 7.5 0 0 0 15 0Z"/>
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.25 17.25a3.75 3.75 0 0 0 7.5 0c0-3.75-3.75-6-3.75-6s-3.75 2.25-3.75 6Z"/>
+    </symbol>
+
     <symbol id="arrow-down" viewBox="0 0 24 24">
         <g clip-path="url(#clip-arrow-down)">
             <path stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -49,6 +54,16 @@
         <path stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
             d="M18.75 5.25l-13.5 13.5m13.5 0L5.25 5.25" />
     </symbol>
+
+    <symbol id="mail-open" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9v9.75a.75.75 0 0 0 .75.75h16.5a.75.75 0 0 0 .75-.75V9l-9-6-9 6Zm7.364 5.25L3.23 19.288m17.539 0-7.133-5.038"/>
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m21 9-7.364 5.25h-3.272L3 9"/>
+    </symbol>
+
+    <svg id="mail-close" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m21 5.25-9 8.25-9-8.25"/>
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5.25h18V18a.75.75 0 0 1-.75.75H3.75A.75.75 0 0 1 3 18V5.25ZM10.364 12 3.23 18.538m17.539 0L13.636 12"/>
+    </svg>
 
     <symbol id="figma" fill="none" viewBox="0 0 40 40">
         <g clip-path="url(#a)">

@@ -1,3 +1,17 @@
+// 요리조리
+import yorijoriMain from "../assets/img/yorijori/main.png";
+import yorijoriMyPage from "../assets/img/yorijori/my-page.png";
+import yorijoriPostCreate from "../assets/img/yorijori/post-creat.png";
+import yorijoriPostCreatePreview from "../assets/img/yorijori/post-creat-preview.png";
+import yorijoriPostDetail from "../assets/img/yorijori/post-detail.png";
+import yorijoriCategoryPage from "../assets/img/yorijori/category-page.gif";
+import yorijoriComment from "../assets/img/yorijori/comment.gif";
+import yorijoriDark from "../assets/img/yorijori/dark.gif";
+import yorijoriMyPost from "../assets/img/yorijori/my-post.gif";
+import yorijoriParticipation from "../assets/img/yorijori/participation.gif";
+import yorijoriReaction from "../assets/img/yorijori/reaction.gif";
+import yorijoriReactionPostDetail from "../assets/img/yorijori/reaction-postDetail.gif";
+
 // 득근득근
 import ounwanWorkoutYoutube from "../assets/img/ounwan/workout-youtube.png";
 import ounwanMyPage from "../assets/img/ounwan/my-page.png";
@@ -31,17 +45,19 @@ export const projectData = {
         title: "요리조리",
         meta: {
             oneLine: "요리로 사람을 연결하는 모임 기반 커뮤니티 플랫폼",
-            period: "2025.07 ~ 진행중",
+            period: "2025.07 ~ 2025.11",
             role: "기획 · 디자인 · 프론트엔드 개발 · 백엔드 연동",
             stack: ["React", "Vite", "TailwindCSS", "PocketBase"],
         },
         introduction: {
             title: "프로젝트 소개",
             description: [
-                "요리조리는 요리를 매개로 사람들을 연결하는 모임 기반 커뮤니티 플랫폼입니다.",
-                "사용자는 다양한 요리 모임을 등록하거나 참여할 수 있고, 서로의 레시피와 후기를 공유하면서 요리 경험을 나눌 수 있습니다.",
-                "‘요리로 이어지는 소셜 커뮤니티’를 목표로 한 개인 프로젝트입니다."
-            ],
+                "‘요리로 사람을 이어주는 커뮤니티’를 목표로, 데이터 모델링부터 UI/UX 구현까지 전 과정을 직접 설계하고 개발한 개인 프로젝트입니다.",
+                "PocketBase를 기반으로 컬렉션 및 릴레이션 구조를 설계하고, 댓글·찜·참여하기 기능의 상태 동기화를 로컬 스냅샷과 서버 간 실시간으로 관리했습니다. 또한 게시물 삭제나 회원 탈퇴 시 관련 데이터를 연쇄적으로 정리해 데이터 정합성을 보장했습니다.",
+                "접근성과 반응형, 다크모드 등을 기본값으로 포함해 다양한 환경에서도 일관된 사용성을 유지하도록 설계했습니다.",
+                "비동기 UX를 고려하여 스켈레톤 최소 노출, 낙관적 업데이트 등 사용자 중심의 피드백 구조를 구현했으며, 재사용 가능한 컴포넌트 아키텍처와 에러/경계 상태 처리 방식을 적용해 유지보수성을 높였습니다.",
+                "Storybook을 통해 주요 컴포넌트를 문서화하고, UI 회귀 테스트 기반으로 디자인 일관성과 품질을 지속적으로 검증했습니다."
+            ]
         },
         features: [
             {
@@ -112,8 +128,34 @@ export const projectData = {
             },
         ],
         workScreen: {
-            src: [taingMain, taingMain],
-            alt: ["port02-이미지", "port03-이미지"],
+            src: [
+                yorijoriMain,
+                yorijoriMyPage,
+                yorijoriPostCreate,
+                yorijoriPostCreatePreview,
+                yorijoriPostDetail,
+                yorijoriCategoryPage,
+                yorijoriComment,
+                yorijoriDark,
+                yorijoriMyPost,
+                yorijoriParticipation,
+                yorijoriReaction,
+                yorijoriReactionPostDetail
+            ],
+            alt: [
+                "메인 페이지",
+                "마이페이지",
+                "모임 등록",
+                "모임 등록 미리보기",
+                "모임 상세",
+                "카테고리 페이지",
+                "댓글 기능",
+                "다크모드",
+                "내가 작성한 글",
+                "모임 참여",
+                "반응형",
+                "상세 페이지 반응형"
+            ],
         },
         retrospect: {
             quote: "“처음으로 완전한 CRUD + 사용자 흐름이 구현된 프로젝트였다.”",
@@ -164,10 +206,11 @@ export const projectData = {
         introduction: {
             title: "프로젝트 소개",
             description: [
-                "득근은 사용자가 자신의 운동 내역을 자유롭게 기록하고 관리할 수 있는 맞춤형 운동 기록 앱입니다.",
-                "캘린더에서 출석률을 확인하고, 지도에서 근처 헬스장을 탐색하며, 유튜브 영상을 통해 운동 동기부여를 얻을 수 있습니다.",
-                "‘꾸준한 운동을 돕는 기록 중심 앱’을 목표로 한 팀 프로젝트입니다."
-            ],
+                "운동 기록과 성취 시각화를 목표로, 디자인 시스템 구축과 페이지 스타일링 및 컴포넌트 구현, 다크모드·반응형 UI 구현을 중심으로 참여한 팀 프로젝트입니다",
+                "Context와 Props 구조를 최적화해 상태 전달을 단순화하고, 다크모드·테마 토큰·CSS 변수 기반 스타일링으로 재사용성을 강화했습니다.",
+                "UI는 Figma 디자인 시스템을 코드로 재현하며, 버튼/모달/폼 등의 상태(hover·active·disabled·error)를 사용자 경험 중심적으로 구현했습니다..",
+                "짧은 개발 일정 속에서도 공통 컴포넌트화와 토큰 기반 스타일 가이드를 정립해 협업 효율과 유지보수성을 개선했습니다."
+            ]
         },
         features: [
             {
@@ -231,8 +274,24 @@ export const projectData = {
             },
         ],
         workScreen: {
-            src: [ounwanWorkoutYoutube, ounwanMyPage, ounwanWorkoutRecordModal, ounwanWorkoutCheck, ounwanMapSearchFilter, ounwanDarkMode, ounwanDesignSystem],
-            alt: ["유튜브 API", "마이페이지", "운동기록 모달창", "운동기록 확인", "지도 검색 및 필터", "다크모드", "디자인 시스템"],
+            src: [
+                ounwanWorkoutYoutube,
+                ounwanMyPage,
+                ounwanWorkoutRecordModal,
+                ounwanWorkoutCheck,
+                ounwanMapSearchFilter,
+                ounwanDarkMode,
+                ounwanDesignSystem
+            ],
+            alt: [
+                "유튜브 API",
+                "마이페이지",
+                "운동기록 모달창",
+                "운동기록 확인",
+                "지도 검색 및 필터",
+                "다크모드",
+                "디자인 시스템"
+            ],
         },
         retrospect: {
             quote: "“빠듯한 일정 속에서도 팀의 합을 맞추는 것이 곧 품질이었다.”",
@@ -258,9 +317,11 @@ export const projectData = {
         introduction: {
             title: "프로젝트 소개",
             description: [
-                "React 프레임워크와 YouTube API를 이용하여 제작한 개인 유튜브형 사이트입니다.",
-                "React의 컴포넌트 구조화와 상태 관리 패턴을 실습하고, YouTube Data API/Raw RapidAPI 응답을 가공해 의미 있는 정보로 제공하는 전 과정을 구현했습니다.",
-                "채널 · 영상 · 카테고리 페이지로 구성했으며, 스켈레톤 로딩, 다크 테마, 반응형, Swiper 커스텀 내비게이션 등 다양한 UI/UX 실험을 포함합니다."
+                "React와 YouTube Data API를 활용해 제작한 개인 프로젝트로, 외부 API 중심 서비스의 데이터 흐름과 UI 성능 최적화를 실습했습니다.",
+                "API 요청/응답 구조를 단순화하고, 영상·채널·카테고리 데이터를 효율적으로 가공하기 위해 비동기 로직을 구조화했습니다. 필수 데이터와 부가 데이터를 분리해 단계별 로딩을 구현했습니다.",
+                "Skeleton UI를 통해 데이터 지연 시에도 부드러운 체감 속도를 유지했고, ThemeProvider 기반 다크모드와 반응형 레이아웃을 적용했습니다.",
+                "Swiper 커스텀 내비게이션을 직접 구현해 드래그·버튼·키보드 탐색 등 다양한 입력 방식을 지원했습니다.",
+                "데이터 렌더링 성능을 개선하고 접근성을 강화하며, ‘빠르고 일관된 피드백 구조’를 중심으로 사용자 경험을 완성했습니다."
             ]
         },
         features: [
@@ -306,11 +367,27 @@ export const projectData = {
             }
         ],
         workScreen: {
-            src: [youtubeMain, youtubeChannel, youtubeSearch, youtubeDarkMode, youtubeMore, youtubeReaction, youtubeSkeleton],
-            alt: ["메인 페이지", "채널 페이지", "검색", "다크모드", "더보기", "반응형", "스켈렉톤"],
+            src: [
+                youtubeMain,
+                youtubeChannel,
+                youtubeSearch,
+                youtubeDarkMode,
+                youtubeMore,
+                youtubeReaction,
+                youtubeSkeleton
+            ],
+            alt: [
+                "메인 페이지",
+                "채널 페이지",
+                "검색",
+                "다크모드",
+                "더보기",
+                "반응형",
+                "스켈렉톤"
+            ],
         },
         retrospect: {
-            quote: "“외부 API 중심 서비스에서 ‘느낌 좋은 속도’는 데이터 전략과 UI 스켈레톤의 합이었다.”",
+            quote: "“외부 API 중심 서비스에서 ‘좋은 속도’는 데이터 전략과 UI 스켈레톤의 합이었다.”",
             body: [
                 "요청/응답 흐름을 단순화하고, 목록을 ‘필수 정보 → 부가 정보’ 순으로 채우는 전략이 UX에 큰 영향을 준다는 걸 확인했습니다.",
                 "다크모드와 반응형을 초기에 구조화해두면 중후반 스타일 변경 비용이 크게 줄어듭니다.",
@@ -332,8 +409,11 @@ export const projectData = {
         introduction: {
             title: "프로젝트 소개",
             description: [
-                "기존 타잉 서비스를 팀 미션 스펙에 맞춰 재구성한 클론 코딩 프로젝트입니다.",
-                "첫 팀프로젝트로서 업무 분담·소통·깃 이슈/PR 중심 협업 사이클을 체득했고, 제가 구현한 영역(헤더·아이디/비밀번호 찾기)을 통해 마크업·스타일·유효성 검사·접근성 체크리스트 적용까지 전 과정을 경험했습니다."
+                "기존 OTT 서비스인 타잉(Tving)의 주요 화면과 기능을 분석하고, 팀 협업을 통해 UI 구조와 퍼블리싱 과정을 학습한 클론 코딩 프로젝트입니다.",
+                "HTML·SCSS·JavaScript 기반으로 마크업과 인터랙션 로직을 구현했으며, 첫 협업 프로젝트로 깃 브랜치 전략(feature/header 등)과 PR 리뷰 사이클을 직접 경험했습니다.",
+                "BEM 네이밍과 7-1 구조의 SCSS 설계를 적용해 스타일 우선순위 충돌을 해결하고, 컴포넌트 단위로 재사용성을 높였습니다.",
+                "PocketBase를 이용해 users·profiles·search_keywords 등 컬렉션을 정의하고, CRUD 로직과 유효성 검증을 연동해 실시간 데이터 흐름을 구현했습니다.",
+                "Figma 디자인을 기준으로 접근성 체크리스트(label·aria·focus)를 코드에 반영하며, 반응형·키보드 탐색·명도 대비 등 시각적 일관성을 확보했습니다."
             ]
         },
         contribution: [
@@ -415,8 +495,26 @@ export const projectData = {
             }
         ],
         workScreen: {
-            src: [taingMain, taingFindIdDisable, taingFindIdActive, taingFindIdError, taingProfileSelect, taingSearch, taingReaction, taingSkeleton],
-            alt: ["메인 페이지", "아이디 찾기(버튼 비활성화)", "아이디 찾기(버튼 활성화)", "아이디 찾기(오류 페이지)", "프로필 선택 페이지", "검색", "반응형", "스켈렉톤"],
+            src: [
+                taingMain,
+                taingFindIdDisable,
+                taingFindIdActive,
+                taingFindIdError,
+                taingProfileSelect,
+                taingSearch,
+                taingReaction,
+                taingSkeleton
+            ],
+            alt: [
+                "메인 페이지",
+                "아이디 찾기(버튼 비활성화)",
+                "아이디 찾기(버튼 활성화)",
+                "아이디 찾기(오류 페이지)",
+                "프로필 선택 페이지",
+                "검색",
+                "반응형",
+                "스켈렉톤"
+            ],
         },
         retrospect: {
             quote: "“협업에서는 코드보다 먼저 소통과 규칙이 성능을 만든다.”",

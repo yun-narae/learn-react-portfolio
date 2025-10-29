@@ -50,6 +50,8 @@ const ProjectDetail = () => {
     const meta = proj?.meta || item?.meta || {};
     const view = item?.view;
     const code = item?.code;
+    const figma = item?.figma || meta?.figma;
+    const storybook = item?.storybook || meta?.storybook;
     const imgName = item?.imgName || headerTitle;
     const imageSrc = item?.img || "/images/placeholder.jpg";
     const imageAlt = imgName || `${headerTitle} 미리보기`;
@@ -127,24 +129,61 @@ const ProjectDetail = () => {
         const targets = sectionRefs.current.map((r) => r.current).filter(Boolean);
         if (!targets.length) return;
 
+        let scrollTimeout;
+        let isScrolling = false;
+
         const io = new IntersectionObserver(
             (entries) => {
+                // 스크롤 중에만 업데이트
+                if (!isScrolling) return;
+
                 if (window.scrollY < 10) {
                     setActive(0);
                     return;
                 }
+
+                // 가장 많이 보이는 섹션 찾기
+                let maxRatio = 0;
+                let maxIndex = -1;
+
                 entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
+                    if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
                         const i = targets.indexOf(entry.target);
-                        if (i > -1) setActive(i);
+                        if (i > -1) {
+                            maxRatio = entry.intersectionRatio;
+                            maxIndex = i;
+                        }
                     }
                 });
+
+                if (maxIndex > -1) {
+                    setActive(maxIndex);
+                }
             },
-            { threshold: 0.1, rootMargin: "-40% 0px -55% 0px" }
+            { 
+                threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+                rootMargin: "-20% 0px -60% 0px" 
+            }
         );
 
+        // 스크롤 이벤트 리스너
+        const handleScroll = () => {
+            isScrolling = true;
+            clearTimeout(scrollTimeout);
+            
+            scrollTimeout = setTimeout(() => {
+                isScrolling = false;
+            }, 150);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
         targets.forEach((t) => io.observe(t));
-        return () => io.disconnect();
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            io.disconnect();
+            clearTimeout(scrollTimeout);
+        };
     }, []);
 
     // projectData 에도, siteText 보조에도 없으면 404 처리
@@ -206,7 +245,7 @@ const ProjectDetail = () => {
                             <div className="project__buttons" role="group" aria-label="프로젝트 바로가기">
                                 {view && (
                                     <a
-                                        className="btn btn--outline"
+                                        className="btn btn--fill"
                                         href={view}
                                         target="_blank"
                                         rel="noopener noreferrer"
@@ -217,13 +256,35 @@ const ProjectDetail = () => {
                                 )}
                                 {code && (
                                     <a
-                                        className="btn btn--outline"
+                                        className="btn btn--fill"
                                         href={code}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label="코드 보기 새 탭에서 열림"
                                     >
                                         code
+                                    </a>
+                                )}
+                                {figma && (
+                                    <a
+                                        className="btn btn--outline"
+                                        href={figma}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label="피그마 디자인 새 탭에서 열림"
+                                    >
+                                        figma
+                                    </a>
+                                )}
+                                {storybook && (
+                                    <a
+                                        className="btn btn--outline"
+                                        href={storybook}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label="스토리북 문서 새 탭에서 열림"
+                                    >
+                                        storybook
                                     </a>
                                 )}
                             </div>
@@ -255,10 +316,11 @@ const ProjectDetail = () => {
                                         className="project__aside-link"
                                         onClick={(e) => {
                                         e.preventDefault();
+                                        // 클릭 시 즉시 active 변경
+                                        setActive(i);
                                         const el = refFor(nav.id)?.current;
                                         if (el) {
                                             scrollTo(el, { offset: -HEADER_OFFSET, duration: 1.2 });
-                                            setActive(i);
                                         }
                                         }}
                                     >
@@ -383,12 +445,6 @@ const ProjectDetail = () => {
                                                         aria-haspopup="dialog"
                                                         onKeyDown={(e) => {
                                                             if (e.key === "Enter" || e.key === " ") openPreview(img.src);
-                                                        }}
-                                                        style={{ 
-                                                            cursor: "zoom-in",
-                                                            width: '100%',
-                                                            height: 'auto',
-                                                            objectFit: 'cover'
                                                         }}
                                                     />
                                                 </li>

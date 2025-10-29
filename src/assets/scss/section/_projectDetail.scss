@@ -1,0 +1,397 @@
+@use "../setting/mixin";
+
+@use "./../setting" as *;
+
+/* 디테일 페이지 */
+.project__wapper {
+    background: var(--mainBg-color);
+    padding: 1rem 1rem 4rem 1rem;
+
+    .project__inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        
+        // 뒤로가기 버튼
+        &-back {
+            display: block;
+            padding: 2rem 0;
+            width: fit-content;
+            transition: 0.3s;
+            color: var(--black300);
+            
+            &:hover {
+                color: var(--red100);
+            }
+        }
+    }
+
+    .project__header {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 2rem;
+        margin-bottom: 5rem;
+        
+        @include mixin.laptop {
+            display: grid;
+            grid-template-columns: 0.7fr 1fr;
+        }
+
+        &-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            .project__title {
+                font-size: clamp(2.5rem, 6vw, 4rem);
+                font-weight: 900;
+                color: var(--red100);
+                margin-bottom: 1rem;
+                line-height: 1;
+            }
+
+            .project__about {
+                display: flex;
+                flex-direction: column;
+                gap: 0.8rem;
+
+                &-row {
+                    display: flex;
+                    gap: 1rem;
+                    
+                    & b {
+                        font-weight: 700;
+                        color: var(--red100);
+                        white-space: nowrap;
+                    }
+
+                    & p {
+                        font-weight: 700;
+                        color: var(--black200);
+                        word-break: keep-all;
+                        white-space: normal;
+                    }
+                }
+            }
+
+            .project__buttons {
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+
+                .btn {
+                    position: relative; /* 오버레이 위에서도 클릭 가능 */
+                    z-index: 1;
+                    display: inline-block;
+                    padding: .6rem 1.2rem;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    font-size: .9rem;
+                    transition: transform .2s ease, background .2s ease, border-color .2s ease;
+
+                    // Fill 스타일 (기본)
+                    &--fill {
+                        color: #fff;
+                        background: var(--red100);
+                        border: 2px solid var(--red100);
+
+                        &:hover {
+                            transform: translateY(-2px);
+                            background: color-mix(in srgb, var(--red100), white 12%);
+                            border-color: color-mix(in srgb, var(--red100), white 12%);
+                        }
+                    }
+
+                    // Outline 스타일
+                    &--outline {
+                        color: var(--red100);
+                        background: transparent;
+                        border: 2px solid var(--red100);
+
+                        &:hover {
+                            transform: translateY(-2px);
+                            background: var(--subBg200);
+                        }
+                    }
+                }
+            }
+        }
+
+        .project__thumbnail {
+            img {
+                width: 100%;
+                display: block;
+                border-radius: 12px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            }
+        }
+    }
+
+    .project__contents {
+        @include mixin.laptop {
+            display: grid;
+            grid-template-columns: 0.2fr 1fr;
+        }
+    }
+
+    .project__aside {
+        display: none;
+
+        @include mixin.laptop {
+            scroll-margin-top: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            white-space: normal;
+            position: sticky;
+            top: 120px;
+            left: 0;
+            height: 5vw;
+            width: 100%;
+            
+            &-title {
+                font-size: clamp(1.2rem, 5vw, 1.2rem);
+                font-weight: 700;
+                color: var(--black300);
+                white-space: nowrap;
+                cursor: pointer;
+                user-select: none;
+
+                &:focus, &:hover {
+                    color: var(--black200);
+                }
+
+                &.active {
+                    color: var(--red100);
+                }
+            }
+
+            &-link {
+                /* a가 li 전체를 덮도록 블록화 */
+                display: block;
+                width: 100%;
+                height: 100%;
+                padding: .5rem 0;        /* 기존 여백 맞춰 조절 */
+                cursor: pointer;
+            }
+        }
+    }
+
+    .project__item {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .project__article {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+
+        @include tablet {
+            gap: 6rem;
+        }
+
+        &-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            scroll-margin-top: 80px;
+            
+            &-title {
+                font-size: clamp(1.5rem, 5vw, 1.5rem);
+                font-weight: 700;
+                color: var(--red100);
+                position: relative;
+            }
+
+            .my-badge {
+                display: inline-block;
+                margin-left: 0.5rem;
+                padding: 0.8rem;
+                font-size: 0.6em;
+                font-weight: 700;
+                text-align: center;
+                white-space: nowrap;
+                color: var(--white);
+                background: var(--red100);
+                border-radius: 999px;
+                vertical-align: middle;
+                letter-spacing: 0.03em;
+                box-shadow: 0 2px 8px rgba(255,0,0,0.08);
+                line-height: 0.6;
+            }
+        }
+
+
+        &-section-inner {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+
+            @include mixin.tablet {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            @include mixin.tablet {
+                &.introduction, &.retrospect {
+                    grid-template-columns: repeat(1, 1fr);
+                }
+            }
+        }
+
+        .section__card {
+            background: #fff;
+            border: 1px solid var(--subBg100);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: left;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+            cursor: default;
+
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            h4 {
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: var(--black100);
+                word-break: keep-all;
+                white-space: normal;
+            }
+
+            .card_inner {
+                display: flex;
+                gap: 1rem;
+            }
+
+            b {
+                white-space: nowrap;
+            }
+
+            p {
+                font-size: 1rem;
+                color: var(--black300);
+                font-weight: 500;
+                line-height: 1.5;
+                word-break: keep-all;
+                white-space: normal;
+            }
+
+            &:hover,
+            &.active {
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            }
+        }
+
+        .section__card.intro {
+            /* layout */
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        
+            /* box model */
+            padding: 2.5rem 2rem;
+            border-left: 6px solid var(--red100);
+            border-radius: 16px;
+        
+            /* visual */
+            background: linear-gradient(135deg, #fff5f5 0%, #ffecec 100%);
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.08);
+        
+            /* interaction */
+            transition: all 0.4s ease;
+        
+            &::before {
+                content: "";
+                position: absolute;
+                top: -40%;
+                right: -40%;
+                width: 300px;
+                height: 300px;
+                background: radial-gradient(circle at center, rgba(255, 0, 0, 0.08), transparent 70%);
+                z-index: 0;
+            }
+        
+            h4 {
+                position: relative;
+                font-size: 1.2rem;
+                font-weight: 800;
+                color: var(--black200);
+            }
+        
+            p {
+                position: relative;
+                z-index: 1;
+        
+                font-size: 1rem;
+                line-height: 1.7;
+                color: #333;
+            }
+
+            &:hover {
+                box-shadow: 0 15px 35px rgba(255, 0, 0, 0.15);
+            }
+        }
+    }
+}
+
+.project__view {
+    scroll-margin-top: 80px;
+    ul {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 1rem;
+
+        @include mixin.laptop {
+            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        }
+    }
+
+    .project__image {
+        aspect-ratio: 3 / 2;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+        cursor: pointer;
+        position: relative; /* ✅ overlay 배치를 위해 추가 */
+
+        &-name {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            line-height: 1.3;
+            color: var(--white);
+            font-weight: 600;
+            background-color: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.18s ease, transform 0.18s ease;
+            width: fit-content;
+            pointer-events: none; /* 텍스트가 클릭 방해하지 않도록 */
+        }
+        
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            &:hover &-name {
+                display: block;
+            }
+        }
+
+        &:hover,
+        &:focus-within {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+        &:hover .project__image-name,
+        &:focus-within &-name {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+

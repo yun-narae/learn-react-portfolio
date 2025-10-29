@@ -11,7 +11,7 @@ const Intro = () => {
     }, []);
 
     return (
-        <section id="intro">
+        <article id="intro">
             <div className="intro__inner">
                 <h1 className="sr-only">
                     윤나래 프론트엔드 포트폴리오
@@ -64,7 +64,7 @@ const Intro = () => {
                         <SvgIcon name="arrow-down" className="arrow-down" />
                 </span>
             </div>
-        </section>
+        </article>
     );
 };
 
