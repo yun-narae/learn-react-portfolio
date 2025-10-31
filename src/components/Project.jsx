@@ -16,7 +16,7 @@ const Project = () => {
         preloadImages(imageSrcs);
     }, []);
 
-    const renderCard = ({ img, imgName, keyword, type, title, code, view, info, id }, idx) => {
+    const renderCard = ({ img, imgName, keyword, type, title, code, view, figma, storybook, info, id }, idx) => {
         // 라우팅에 사용할 식별자: id가 있으면 id, 없으면 idx 사용
         const routeId = (id !== undefined && id !== null) ? String(id) : String(idx);
 
@@ -53,22 +53,48 @@ const Project = () => {
 
 
                 <div className="btn">
-                    <a
-                        href={code}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        Code
-                    </a>
-                    <a
-                        href={view}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        View
-                    </a>
+                    {code && (
+                        <a
+                            href={code}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            Code
+                        </a>
+                    )}
+                    {view && (
+                        <a
+                            href={view}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            View
+                        </a>
+                    )}
+                    {figma && (
+                        <a
+                            href={figma}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="btn--outline"
+                        >
+                            Figma
+                        </a>
+                    )}
+                    {storybook && (
+                        <a
+                            href={storybook}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="btn--outline"
+                        >
+                            Storybook
+                        </a>
+                    )}
                 </div>
             </article>
         );
