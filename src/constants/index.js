@@ -120,7 +120,7 @@ export const siteText = [
         title: "타잉",
         img: taingthumbnail,
         imgName: "타잉 프로젝트 썸네일",
-        keyword: ["반응형", "퍼블리싱", "웹접근성", "SCSS"],
+        keyword: ["반응형", "퍼블리싱", "SCSS", "웹접근성" ],
         code: "https://github.com/FRONTENDSCHOOL10/Trinity",
         view: "https://trinitytaing.netlify.app/",
     },

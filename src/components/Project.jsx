@@ -46,7 +46,7 @@ const Project = () => {
                 <h3 className="title">{title}</h3>
                 
                 <div className="keyword">
-                    {keyword?.slice(0, 3).map((t, i) => (
+                    {keyword?.map((t, i) => (
                         <div key={`${title}-line-${i}`}>{t}</div>
                     ))}
                 </div>
